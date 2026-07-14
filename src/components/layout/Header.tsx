@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { EASE_OUT_EXPO, SPRING } from '@/lib/motion'
 import { Button } from '@/components/ui/Button'
 import { Logo } from './Logo'
 
@@ -26,6 +28,7 @@ export function Header() {
   const [onHero, setOnHero] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
+  const reduced = useReducedMotion()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -61,17 +64,45 @@ export function Header() {
 
   const overBanner = onHero && !menuOpen
 
-  const navClass = ({ isActive }: { isActive: boolean }): string =>
-    cn(
-      'text-sm transition-colors',
-      overBanner
-        ? isActive
-          ? 'text-mocha-200'
-          : 'text-cream-100 hover:text-mocha-200'
-        : isActive
-          ? 'text-mocha-500'
-          : 'text-ink-700 hover:text-mocha-500',
-    )
+  /**
+   * O filete da página ativa é um só, compartilhado por todos os links (`layoutId`): ao trocar
+   * de página ele desliza até o novo link — inclusive atravessando a logo — em vez de sumir de
+   * um lado e reaparecer do outro.
+   */
+  const NavItem = ({ to, label, end = false }: { to: string; label: string; end?: boolean }) => (
+    <NavLink
+      to={to}
+      end={end}
+      className={({ isActive }) =>
+        cn(
+          'relative py-1 text-sm transition-colors',
+          overBanner
+            ? isActive
+              ? 'text-mocha-200'
+              : 'text-cream-100 hover:text-mocha-200'
+            : isActive
+              ? 'text-mocha-500'
+              : 'text-ink-700 hover:text-mocha-500',
+        )
+      }
+    >
+      {({ isActive }) => (
+        <>
+          {label}
+          {isActive ? (
+            <motion.span
+              layoutId="nav-active"
+              transition={reduced ? { duration: 0 } : SPRING}
+              className={cn(
+                'absolute inset-x-0 -bottom-0.5 h-px',
+                overBanner ? 'bg-mocha-200' : 'bg-mocha-500',
+              )}
+            />
+          ) : null}
+        </>
+      )}
+    </NavLink>
+  )
 
   return (
     <header
@@ -84,9 +115,7 @@ export function Header() {
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-6">
         <nav aria-label="Principal" className="hidden flex-1 items-center gap-8 md:flex">
           {leftLinks.map((link) => (
-            <NavLink key={link.to} to={link.to} end className={navClass}>
-              {link.label}
-            </NavLink>
+            <NavItem key={link.to} to={link.to} label={link.label} end />
           ))}
         </nav>
 
@@ -97,9 +126,7 @@ export function Header() {
         <div className="hidden flex-1 items-center justify-end gap-8 md:flex">
           <nav aria-label="Secundária" className="flex items-center gap-8">
             {rightLinks.map((link) => (
-              <NavLink key={link.to} to={link.to} className={navClass}>
-                {link.label}
-              </NavLink>
+              <NavItem key={link.to} to={link.to} label={link.label} />
             ))}
           </nav>
 
@@ -123,30 +150,39 @@ export function Header() {
         </button>
       </div>
 
-      {menuOpen ? (
-        <nav
-          id="menu-mobile"
-          aria-label="Principal (mobile)"
-          className="border-cream-300 bg-cream-100/95 border-t px-6 py-6 backdrop-blur-xl md:hidden"
-        >
-          <ul className="space-y-1">
-            {allLinks.map((link) => (
-              <li key={link.to}>
-                <Link
-                  to={link.to}
-                  className="text-ink-700 hover:text-mocha-500 hover:bg-mocha-500/[0.06] block rounded-lg px-3 py-3 text-base transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <AnimatePresence>
+        {menuOpen ? (
+          <motion.nav
+            key="menu-mobile"
+            id="menu-mobile"
+            aria-label="Principal (mobile)"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: reduced ? 0 : 0.3, ease: EASE_OUT_EXPO }}
+            className="border-cream-300 bg-cream-100/95 overflow-hidden border-t backdrop-blur-xl md:hidden"
+          >
+            <div className="px-6 py-6">
+              <ul className="space-y-1">
+                {allLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-ink-700 hover:text-mocha-500 hover:bg-mocha-500/[0.06] block rounded-lg px-3 py-3 text-base transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-          <Button as={Link} to="/#agendar" size="lg" className="mt-5 w-full">
-            Agendar horário
-          </Button>
-        </nav>
-      ) : null}
+              <Button as={Link} to="/#agendar" size="lg" className="mt-5 w-full">
+                Agendar horário
+              </Button>
+            </div>
+          </motion.nav>
+        ) : null}
+      </AnimatePresence>
     </header>
   )
 }
