@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Clock } from 'lucide-react'
 import { categories, professionals, services } from '@/content/catalog'
@@ -8,7 +9,10 @@ import { Button } from '@/components/ui/Button'
 import { Photo } from '@/components/ui/Photo'
 import { Card, Container, Script, Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
+import { ServicesTeaser } from '@/components/sections/ServicesTeaser'
+import { GalleryGrid } from '@/components/sections/GalleryGrid'
 import { BookingSection } from '@/components/sections/BookingSection'
+import { Faq } from '@/components/sections/Faq'
 
 export function ServicesPage() {
   useDocumentMeta(
@@ -38,7 +42,7 @@ export function ServicesPage() {
             description="O valor final depende do que combinarmos na avaliação. Você sabe quanto vai pagar antes de começar: nada de surpresa no caixa."
           />
 
-          {/* Índice: 6 categorias exigem um atalho, não um scroll longo */}
+          {/* Índice: cinco categorias pedem um atalho, não um scroll longo */}
           <Reveal delay={0.1} className="mt-12">
             <div className="flex flex-wrap justify-center gap-2">
               {categories.map((category) => (
@@ -54,6 +58,8 @@ export function ServicesPage() {
           </Reveal>
         </Container>
       </Section>
+
+      <ServicesTeaser />
 
       {categories.map((category, index) => {
         const items = services.filter((service) => service.category === category.id)
@@ -158,7 +164,25 @@ export function ServicesPage() {
         </Container>
       </Section>
 
+      <Section tone="raised">
+        <Container>
+          <SectionHeading eyebrow="Portfólio" title="Trabalhos recentes" />
+
+          <div className="mt-14">
+            <GalleryGrid limit={8} />
+          </div>
+
+          <div className="mt-14 text-center">
+            <Button as={Link} to="/galeria" variant="secondary" size="lg">
+              Ver a galeria completa
+              <ArrowRight className="size-4" aria-hidden />
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
       <BookingSection />
+      <Faq />
     </>
   )
 }

@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { MapPin, Menu, Phone, X } from 'lucide-react'
-import { site } from '@/content/site'
+import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/ui/Button'
-import { InstagramIcon } from '@/components/ui/icons'
 import { Logo } from './Logo'
 
 /** A navegação abre dos dois lados da marca — a logo fica no eixo central da página. */
@@ -21,13 +19,6 @@ const rightLinks = [
 
 const allLinks = [...leftLinks, ...rightLinks]
 
-function navClass({ isActive }: { isActive: boolean }): string {
-  return cn(
-    'text-sm transition-colors',
-    isActive ? 'text-mocha-500' : 'text-ink-700 hover:text-mocha-500',
-  )
-}
-
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -43,54 +34,32 @@ export function Header() {
   // Uma navegação não deve deixar o menu mobile aberto por cima da página nova.
   useEffect(() => setMenuOpen(false), [pathname])
 
+  /**
+   * Só a home tem o banner subindo por trás do menu. Enquanto ele estiver ali,
+   * a navegação é clara sobre a foto; ao rolar, vira tinta escura sobre o creme.
+   */
+  const overBanner = pathname === '/' && !scrolled && !menuOpen
+
+  const navClass = ({ isActive }: { isActive: boolean }): string =>
+    cn(
+      'text-sm transition-colors',
+      overBanner
+        ? isActive
+          ? 'text-mocha-200'
+          : 'text-cream-100 hover:text-mocha-200'
+        : isActive
+          ? 'text-mocha-500'
+          : 'text-ink-700 hover:text-mocha-500',
+    )
+
   return (
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        scrolled || menuOpen
-          ? 'bg-cream-100/90 border-cream-300 border-b backdrop-blur-xl'
-          : 'border-b border-transparent',
+        // Ao rolar: só desfoque, sem cor de fundo — a página continua aparecendo por baixo.
+        overBanner ? '' : 'backdrop-blur-md',
       )}
     >
-      {/* Barra utilitária: endereço e telefone ficam acessíveis sem ocupar a navegação */}
-      <div
-        className={cn(
-          'border-cream-300/70 hidden border-b transition-all duration-300 lg:block',
-          scrolled && 'lg:hidden',
-        )}
-      >
-        <div className="text-ink-500 mx-auto flex h-10 max-w-6xl items-center justify-between px-6 text-xs">
-          <div className="flex items-center gap-6">
-            <a
-              href={site.address.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-mocha-500 flex items-center gap-1.5 transition-colors"
-            >
-              <MapPin className="size-3.5" aria-hidden />
-              {site.address.street}
-            </a>
-            <a
-              href={`tel:+${site.whatsapp}`}
-              className="hover:text-mocha-500 flex items-center gap-1.5 transition-colors"
-            >
-              <Phone className="size-3.5" aria-hidden />
-              {site.whatsappDisplay}
-            </a>
-          </div>
-
-          <a
-            href={site.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-mocha-500 flex items-center gap-1.5 transition-colors"
-          >
-            <InstagramIcon className="size-3.5" />
-            {site.instagramHandle}
-          </a>
-        </div>
-      </div>
-
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-6">
         <nav aria-label="Principal" className="hidden flex-1 items-center gap-8 md:flex">
           {leftLinks.map((link) => (
@@ -101,7 +70,7 @@ export function Header() {
         </nav>
 
         <Link to="/" aria-label="Studio B Lumière — página inicial" className="shrink-0">
-          <Logo />
+          <Logo tone={overBanner ? 'light' : 'dark'} />
         </Link>
 
         <div className="hidden flex-1 items-center justify-end gap-8 md:flex">
@@ -124,7 +93,10 @@ export function Header() {
           aria-expanded={menuOpen}
           aria-controls="menu-mobile"
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
-          className="text-ink-900 -mr-2 p-2 md:hidden"
+          className={cn(
+            '-mr-2 p-2 transition-colors md:hidden',
+            overBanner ? 'text-cream-50' : 'text-ink-900',
+          )}
         >
           {menuOpen ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
         </button>

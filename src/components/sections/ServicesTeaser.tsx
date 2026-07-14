@@ -39,7 +39,7 @@ function shapeFor(index: number): string {
 
 export function ServicesTeaser() {
   return (
-    <Section id="servicos">
+    <Section id="servicos" className="bg-white">
       <Container>
         <div className="grid gap-14 lg:grid-cols-[0.8fr_1.4fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -62,8 +62,8 @@ export function ServicesTeaser() {
                 e outro.
               </p>
 
-              <Button as={Link} to="/servicos" variant="secondary" size="lg" className="mt-9">
-                Ver serviços
+              <Button as="a" href="#agendar" variant="secondary" size="lg" className="mt-9">
+                Agendar horário
                 <ArrowRight className="size-4" aria-hidden />
               </Button>
             </Reveal>

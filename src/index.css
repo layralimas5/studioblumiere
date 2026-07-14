@@ -79,6 +79,29 @@
   .first-letter-caps::first-letter {
     text-transform: uppercase;
   }
+
+  /*
+   * Esteira infinita. O conteúdo é duplicado no JSX e a trilha anda até -50%:
+   * ao completar, a segunda cópia está exatamente onde a primeira começou,
+   * então o loop reinicia sem nenhum salto visível.
+   */
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  .marquee-track:hover,
+  .marquee-track:focus-within {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -92,5 +115,14 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /*
+   * A regra acima faria a esteira "saltar" direto para o fim (-50%), escondendo
+   * metade do conteúdo. Aqui ela simplesmente para parada, no início.
+   */
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
   }
 }
