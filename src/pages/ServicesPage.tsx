@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Clock } from 'lucide-react'
 import { categories, professionals, services } from '@/content/catalog'
@@ -7,10 +6,10 @@ import { staggerContainer, staggerItem } from '@/lib/motion'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { Button } from '@/components/ui/Button'
 import { Photo } from '@/components/ui/Photo'
-import { Card, Container, Script, Section, SectionHeading } from '@/components/ui/Section'
+import { Card, Container, Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
+import { BannerScript, PageBanner } from '@/components/sections/PageBanner'
 import { ServicesTeaser } from '@/components/sections/ServicesTeaser'
-import { GalleryGrid } from '@/components/sections/GalleryGrid'
 import { BookingSection } from '@/components/sections/BookingSection'
 import { Faq } from '@/components/sections/Faq'
 
@@ -22,42 +21,25 @@ export function ServicesPage() {
 
   return (
     <>
-      <Section className="overflow-hidden pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="glow-warm pointer-events-none absolute -top-40 left-1/2 size-[40rem] -translate-x-1/2 rounded-full"
-        />
-
-        <Container>
-          <SectionHeading
-            as="h1"
-            eyebrow="Serviços"
-            title={
-              <>
-                Tudo o que fazemos,
-                <br />
-                <Script>sem letra miúda</Script>
-              </>
-            }
-            description="O valor final depende do que combinarmos na avaliação. Você sabe quanto vai pagar antes de começar: nada de surpresa no caixa."
-          />
-
-          {/* Índice: cinco categorias pedem um atalho, não um scroll longo */}
-          <Reveal delay={0.1} className="mt-12">
-            <div className="flex flex-wrap justify-center gap-2">
-              {categories.map((category) => (
-                <a
-                  key={category.id}
-                  href={`#${category.id}`}
-                  className="border-cream-300 text-ink-500 hover:border-mocha-400 hover:text-mocha-500 rounded-full border bg-white px-4 py-2 text-xs font-medium transition-colors"
-                >
-                  {category.label}
-                </a>
-              ))}
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <PageBanner
+        image="/images/services/banner.png"
+        alt="Cliente com a pele e a maquiagem finalizadas, refletida no espelho"
+        imagePosition="right"
+        eyebrow="Serviços"
+        title={
+          <>
+            Tudo o que fazemos,
+            <br />
+            <BannerScript>sem letra miúda</BannerScript>
+          </>
+        }
+        description="O valor final depende do que combinarmos na avaliação. Você sabe quanto vai pagar antes de começar: nada de surpresa no caixa."
+      >
+        <Button as="a" href="#agendar" size="lg">
+          Agendar meu horário
+          <ArrowRight className="size-4" aria-hidden />
+        </Button>
+      </PageBanner>
 
       <ServicesTeaser />
 
@@ -78,6 +60,7 @@ export function ServicesPage() {
                     <Photo
                       src={`/images/services/${category.id}.jpg`}
                       alt={category.label}
+                      zoom
                       className="mb-7 aspect-[4/3] w-full rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
                     />
                     <h2 className="font-display text-ink-900 text-3xl font-semibold tracking-tight md:text-4xl">
@@ -146,8 +129,8 @@ export function ServicesPage() {
                 <Photo
                   src={pro.photo}
                   alt={pro.name}
+                  zoom
                   className="ring-cream-300 group-hover:ring-mocha-300 mx-auto aspect-square w-full max-w-[11rem] rounded-2xl ring-1 transition-all duration-500"
-                  imgClassName="transition-transform duration-700 group-hover:scale-105"
                 />
                 <p className="text-ink-900 mt-5 text-sm font-medium">{pro.name}</p>
                 <p className="text-mocha-500 mt-1.5 text-xs leading-snug">{pro.role}</p>
@@ -158,23 +141,6 @@ export function ServicesPage() {
           <div className="mt-14 text-center">
             <Button as="a" href="#agendar" size="lg">
               Reservar com a minha profissional
-              <ArrowRight className="size-4" aria-hidden />
-            </Button>
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="raised">
-        <Container>
-          <SectionHeading eyebrow="Portfólio" title="Trabalhos recentes" />
-
-          <div className="mt-14">
-            <GalleryGrid limit={8} />
-          </div>
-
-          <div className="mt-14 text-center">
-            <Button as={Link} to="/galeria" variant="secondary" size="lg">
-              Ver a galeria completa
               <ArrowRight className="size-4" aria-hidden />
             </Button>
           </div>
