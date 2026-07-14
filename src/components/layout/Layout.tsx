@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { pageTransition } from '@/lib/motion'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { BannerProvider } from './BannerProvider'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { WhatsappFab } from './WhatsappFab'
@@ -44,7 +45,7 @@ export function Layout() {
   const reduced = useReducedMotion()
 
   return (
-    <>
+    <BannerProvider>
       <a
         href="#conteudo"
         className="bg-mocha-500 text-cream-50 sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
@@ -79,6 +80,6 @@ export function Layout() {
 
       {/* Textura por cima de tudo — inerte ao clique, invisível ao leitor de tela. */}
       <div aria-hidden className="grain pointer-events-none fixed inset-0 z-[70]" />
-    </>
+    </BannerProvider>
   )
 }

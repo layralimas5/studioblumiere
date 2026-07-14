@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { useBanner } from '@/lib/banner'
 import { EASE_OUT_EXPO, SPRING } from '@/lib/motion'
 import { Button } from '@/components/ui/Button'
 import { Logo } from './Logo'
@@ -29,6 +30,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
   const reduced = useReducedMotion()
+  const banner = useBanner()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -42,10 +44,11 @@ export function Header() {
    * de altura, e trocar para tinta escura no primeiro pixel rolado apagaria os links
    * sobre a foto. O que importa é se o menu ainda repousa sobre o banner — e é isso
    * que o observador responde, recortando do topo a faixa ocupada pelo próprio menu.
+   *
+   * O banner chega pelo contexto, não do DOM: ele avisa quando monta. Ver BannerContext.
    */
   useEffect(() => {
-    const hero = document.getElementById('hero')
-    if (!hero) {
+    if (!banner) {
       setOnHero(false)
       return
     }
@@ -55,9 +58,9 @@ export function Header() {
       { rootMargin: `-${HEADER_HEIGHT}px 0px 0px 0px` },
     )
 
-    observer.observe(hero)
+    observer.observe(banner)
     return () => observer.disconnect()
-  }, [pathname])
+  }, [banner])
 
   // Uma navegação não deve deixar o menu mobile aberto por cima da página nova.
   useEffect(() => setMenuOpen(false), [pathname])
