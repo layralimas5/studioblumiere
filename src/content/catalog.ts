@@ -200,18 +200,20 @@ export const professionals: Professional[] = [
   },
 ]
 
+/**
+ * Enquanto o portfólio real não chega, a galeria reaproveita as fotos que já temos.
+ * TODO(cliente): trocar por fotos exclusivas da galeria — repetir a mesma imagem em
+ * dois lugares do site enfraquece as duas.
+ */
 export const gallery: GalleryItem[] = [
-  { id: 'g1', category: 'noivas', src: '/images/gallery/noivas-1.jpg', alt: 'Noiva com maquiagem finalizada e véu' },
-  { id: 'g2', category: 'noivas', src: '/images/gallery/noivas-2.jpg', alt: 'Maquiagem de noiva em pele madura' },
-  { id: 'g3', category: 'noivas', src: '/images/gallery/noivas-3.jpg', alt: 'Detalhe do contorno de lábios de noiva' },
-  { id: 'g7', category: 'maquiagem', src: '/images/gallery/make-1.jpg', alt: 'Maquiagem social com olhar esfumado' },
-  { id: 'g8', category: 'maquiagem', src: '/images/gallery/make-2.jpg', alt: 'Pele natural com boca nude' },
-  { id: 'g9', category: 'cilios', src: '/images/gallery/cilios-1.jpg', alt: 'Extensão de cílios efeito clássico' },
-  { id: 'g10', category: 'cilios', src: '/images/gallery/cilios-2.jpg', alt: 'Volume brasileiro em olhos amendoados' },
-  { id: 'g11', category: 'cilios', src: '/images/gallery/cilios-3.jpg', alt: 'Lash lifting com curvatura acentuada' },
-  { id: 'g12', category: 'unhas', src: '/images/gallery/unhas-1.jpg', alt: 'Alongamento em gel formato bailarina' },
-  { id: 'g13', category: 'unhas', src: '/images/gallery/unhas-2.jpg', alt: 'Francesinha moderna em unhas curtas' },
-  { id: 'g14', category: 'sobrancelhas', src: '/images/gallery/brow-1.jpg', alt: 'Sobrancelha com design e henna' },
+  { id: 'g1', category: 'noivas', src: '/images/noiva.jpg', alt: 'Noiva com a maquiagem finalizada' },
+  { id: 'g2', category: 'noivas', src: '/images/noiva-02.jpg', alt: 'Detalhe da maquiagem de noiva' },
+  { id: 'g3', category: 'noivas', src: '/images/services/noivas.jpg', alt: 'Produção de noiva feita no Studio B Lumière' },
+  { id: 'g4', category: 'maquiagem', src: '/images/hero.png', alt: 'Maquiadora finalizando o contorno dos lábios' },
+  { id: 'g5', category: 'maquiagem', src: '/images/services/maquiagem.jpg', alt: 'Maquiagem social feita no Studio B Lumière' },
+  { id: 'g6', category: 'cilios', src: '/images/services/cilios.jpg', alt: 'Extensão de cílios feita no Studio B Lumière' },
+  { id: 'g7', category: 'unhas', src: '/images/services/unhas.jpg', alt: 'Unhas feitas no Studio B Lumière' },
+  { id: 'g8', category: 'sobrancelhas', src: '/images/services/sobrancelhas.jpg', alt: 'Sobrancelha com design feito no Studio B Lumière' },
 ]
 
 /** TODO(cliente): trocar pelos depoimentos reais, com autorização das clientes. */
