@@ -1,36 +1,31 @@
 import { cn } from '@/lib/cn'
 
 /**
- * A marca é o único elemento manuscrito fixo da tela. O "Studio B" em versalete
- * segura o script para que ele leia como assinatura, não como enfeite.
+ * Logo da marca. O arquivo original vem com fundo bege chapado; `logo-transparent.png`
+ * é a mesma arte com o fundo recortado — sem ele, apareceria um retângulo sobre a foto.
  *
- * `tone="light"` é usado quando a logo repousa sobre a foto do banner.
+ * O traço é dourado claro: sobre o banner escuro ele é clareado, e sobre o creme é
+ * escurecido, senão desapareceria no fundo.
  */
 export function Logo({
   className,
   tone = 'dark',
 }: {
   className?: string
+  /** `light` = repousa sobre a foto do banner. `dark` = sobre o creme. */
   tone?: 'dark' | 'light'
 }) {
   return (
-    <span className={cn('flex flex-col items-center leading-none', className)}>
-      <span
-        className={cn(
-          'font-display text-[0.5625rem] font-medium uppercase tracking-[0.42em] transition-colors',
-          tone === 'light' ? 'text-cream-200' : 'text-ink-500',
-        )}
-      >
-        Studio B
-      </span>
-      <span
-        className={cn(
-          'font-script -mt-1 text-3xl transition-colors',
-          tone === 'light' ? 'text-cream-50' : 'text-ink-900',
-        )}
-      >
-        Lumière
-      </span>
-    </span>
+    <img
+      src="/logo-transparent.png"
+      alt="Studio B Lumière"
+      width={126}
+      height={67}
+      className={cn(
+        'h-11 w-auto transition-[filter] duration-300',
+        tone === 'light' ? 'brightness-125' : 'brightness-[0.55] saturate-150',
+        className,
+      )}
+    />
   )
 }

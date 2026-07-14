@@ -14,17 +14,21 @@ const navLinks = [
 
 function ColumnTitle({ children }: { children: string }) {
   return (
-    <h2 className="text-mocha-500 text-[0.6875rem] font-medium uppercase tracking-[0.22em]">
+    <h2 className="text-mocha-600 text-[0.6875rem] font-medium uppercase tracking-[0.22em]">
       {children}
     </h2>
   )
 }
 
+/**
+ * O rodapé é o único bloco em creme escurecido. Sobre ele, a tinta precisa ser a
+ * mais forte (ink-700): ink-500 cairia abaixo do contraste AA neste fundo.
+ */
 export function Footer() {
   return (
     <footer
       id="contato"
-      className="border-cream-300 bg-cream-200 relative scroll-mt-24 overflow-hidden border-t pb-10 pt-20"
+      className="border-mocha-200 bg-cream-300 relative scroll-mt-24 overflow-hidden border-t pb-10 pt-20"
     >
       <div
         aria-hidden
@@ -34,14 +38,14 @@ export function Footer() {
       <Container>
         <div className="grid gap-12 md:grid-cols-4">
           <div>
-            <Logo className="items-start" />
-            <p className="text-ink-500 mt-6 max-w-xs text-sm leading-relaxed">{site.tagline}.</p>
+            <Logo className="h-14" />
+            <p className="text-ink-700 mt-6 max-w-xs text-sm leading-relaxed">{site.tagline}.</p>
 
             <a
               href={site.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ink-700 hover:text-mocha-500 mt-6 inline-flex items-center gap-2 text-sm transition-colors"
+              className="text-ink-700 hover:text-mocha-600 mt-6 inline-flex items-center gap-2 text-sm transition-colors"
             >
               <InstagramIcon className="size-4" />
               {site.instagramHandle}
@@ -53,7 +57,7 @@ export function Footer() {
             <ul className="mt-6 space-y-3 text-sm">
               {navLinks.map((link) => (
                 <li key={link.to}>
-                  <Link to={link.to} className="text-ink-500 hover:text-mocha-500 transition-colors">
+                  <Link to={link.to} className="text-ink-700 hover:text-mocha-600 transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -63,14 +67,14 @@ export function Footer() {
 
           <div>
             <ColumnTitle>Onde estamos</ColumnTitle>
-            <address className="text-ink-500 mt-6 space-y-3 text-sm not-italic">
+            <address className="text-ink-700 mt-6 space-y-3 text-sm not-italic">
               <a
                 href={site.address.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-mocha-500 flex gap-2.5 transition-colors"
+                className="hover:text-mocha-600 flex gap-2.5 transition-colors"
               >
-                <MapPin className="text-mocha-500 mt-0.5 size-4 shrink-0" aria-hidden />
+                <MapPin className="text-mocha-600 mt-0.5 size-4 shrink-0" aria-hidden />
                 <span>
                   {site.address.street}
                   <br />
@@ -79,16 +83,16 @@ export function Footer() {
               </a>
               <a
                 href={`tel:+${site.whatsapp}`}
-                className="hover:text-mocha-500 flex items-center gap-2.5 transition-colors"
+                className="hover:text-mocha-600 flex items-center gap-2.5 transition-colors"
               >
-                <Phone className="text-mocha-500 size-4 shrink-0" aria-hidden />
+                <Phone className="text-mocha-600 size-4 shrink-0" aria-hidden />
                 {site.whatsappDisplay}
               </a>
               <a
                 href={`mailto:${site.email}`}
-                className="hover:text-mocha-500 flex items-center gap-2.5 transition-colors"
+                className="hover:text-mocha-600 flex items-center gap-2.5 transition-colors"
               >
-                <Mail className="text-mocha-500 size-4 shrink-0" aria-hidden />
+                <Mail className="text-mocha-600 size-4 shrink-0" aria-hidden />
                 {site.email}
               </a>
             </address>
@@ -96,14 +100,14 @@ export function Footer() {
 
           <div>
             <ColumnTitle>Atendimento</ColumnTitle>
-            <ul className="text-ink-500 mt-6 space-y-3 text-sm">
+            <ul className="text-ink-700 mt-6 space-y-3 text-sm">
               {site.hours.map((entry) => (
                 <li key={entry.days} className="flex gap-2.5">
-                  <Clock className="text-mocha-500 mt-0.5 size-4 shrink-0" aria-hidden />
+                  <Clock className="text-mocha-600 mt-0.5 size-4 shrink-0" aria-hidden />
                   <span>
-                    {entry.days}
+                    <span className="font-medium">{entry.days}</span>
                     <br />
-                    <span className="text-ink-400">{entry.time}</span>
+                    {entry.time}
                   </span>
                 </li>
               ))}
@@ -113,7 +117,7 @@ export function Footer() {
 
         <div className="rule-mocha mt-16" />
 
-        <p className="text-ink-400 mt-8 text-xs">
+        <p className="text-ink-700 mt-8 text-xs">
           © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
         </p>
       </Container>

@@ -14,7 +14,7 @@ const promises = [
 
 export function BridalTeaser() {
   return (
-    <Section tone="raised" className="overflow-hidden">
+    <Section className="bg-cream-50 overflow-hidden">
       <div
         aria-hidden
         className="glow-warm pointer-events-none absolute -left-40 top-1/4 size-[36rem] rounded-full"
