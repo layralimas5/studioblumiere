@@ -23,6 +23,7 @@ export function Photo({
   imgClassName,
   loading = 'lazy',
   overlay = false,
+  zoom = false,
 }: {
   src: string
   alt: string
@@ -31,11 +32,16 @@ export function Photo({
   loading?: 'lazy' | 'eager'
   /** Escurece a base da imagem — necessário quando há texto claro por cima. */
   overlay?: boolean
+  /**
+   * Aproxima a foto no hover. É o mesmo movimento em todo o site: quando um card
+   * inteiro é a área de hover, basta ele carregar a classe `group`.
+   */
+  zoom?: boolean
 }) {
   const [failed, setFailed] = useState(false)
 
   return (
-    <div className={cn('bg-cream-200 relative overflow-hidden', className)}>
+    <div className={cn('bg-cream-200 relative overflow-hidden', zoom && 'group', className)}>
       {failed ? (
         <div role="img" aria-label={alt} className="absolute inset-0">
           <div
@@ -56,7 +62,11 @@ export function Photo({
           loading={loading}
           decoding="async"
           onError={() => setFailed(true)}
-          className={cn('absolute inset-0 h-full w-full object-cover', imgClassName)}
+          className={cn(
+            'absolute inset-0 h-full w-full object-cover',
+            zoom && 'transition-transform duration-700 ease-out group-hover:scale-105',
+            imgClassName,
+          )}
         />
       )}
 
@@ -67,6 +77,17 @@ export function Photo({
           className="from-ink-900/75 via-ink-900/20 absolute inset-0 bg-gradient-to-t to-transparent"
         />
       ) : null}
+
+      {/*
+        Fio de tinta por dentro da borda. Sobre o creme, uma foto clara sem contorno parece
+        derreter no fundo — este filete a recorta sem virar moldura.
+      */}
+      {failed ? null : (
+        <div
+          aria-hidden
+          className="ring-ink-900/[0.07] pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-inset"
+        />
+      )}
     </div>
   )
 }

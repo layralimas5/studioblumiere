@@ -54,6 +54,68 @@
     @apply from-mocha-400/0 via-mocha-400/40 to-mocha-400/0 h-px w-full bg-gradient-to-r;
   }
 
+  /*
+   * Emenda entre seções de tons diferentes. A cor da seção (`--tone`) não começa nem
+   * termina de chapa: ela nasce e morre num degradê até o creme do corpo (cream-100),
+   * que é o tom comum a todas. Como as duas vizinhas terminam no mesmo creme, o encontro
+   * deixa de ser uma linha reta e vira uma passagem.
+   */
+  .section-blend {
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-cream-100) 0,
+      var(--tone) var(--blend, 7rem),
+      var(--tone) calc(100% - var(--blend, 7rem)),
+      var(--color-cream-100) 100%
+    );
+  }
+
+  /*
+   * Grão de papel sobre a página inteira. É o que separa um fundo "chapado de tela" de
+   * uma superfície impressa: o olho não vê a textura, mas sente que o creme tem matéria.
+   * Ruído gerado em SVG — zero requisição, zero peso de imagem.
+   */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.055;
+    mix-blend-mode: multiply;
+  }
+
+  /*
+   * Reflexo que atravessa o botão no hover — o brilho que a luz faria numa superfície
+   * polida. Some sozinho: é um aceno, não uma animação.
+   */
+  .sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .sheen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    translate: -110% 0;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgb(255 255 255 / 0.28) 50%,
+      transparent 80%
+    );
+    transition: translate 0.75s var(--ease-out-expo);
+  }
+
+  .sheen:hover::after {
+    translate: 110% 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sheen::after {
+      display: none;
+    }
+  }
+
   /* Halo quente difuso: dá profundidade ao creme sem virar uma cor chapada */
   .glow-warm {
     background: radial-gradient(

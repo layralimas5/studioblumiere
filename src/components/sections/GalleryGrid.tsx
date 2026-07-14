@@ -69,8 +69,8 @@ export function GalleryGrid({ limit }: { limit?: number }) {
                 <Photo
                   src={item.src}
                   alt={item.alt}
+                  zoom
                   className="ring-cream-300 group-hover:ring-mocha-300 aspect-[3/4] w-full rounded-2xl ring-1 transition-all duration-500 group-hover:shadow-[0_24px_50px_-32px_rgba(26,21,18,0.45)]"
-                  imgClassName="transition-transform duration-700 group-hover:scale-105"
                 />
               </motion.li>
             ))}

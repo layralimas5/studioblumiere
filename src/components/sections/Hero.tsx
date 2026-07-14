@@ -1,13 +1,17 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, MapPin, Star } from 'lucide-react'
 import { site } from '@/content/site'
 import { EASE_OUT_EXPO } from '@/lib/motion'
+import { useParallax } from '@/lib/useParallax'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Section'
 
 export function Hero() {
   const reduced = useReducedMotion()
+  const ref = useRef<HTMLElement>(null)
+  const y = useParallax(ref)
 
   const rise = (delay: number) => ({
     initial: { opacity: 0, y: reduced ? 0 : 24 },
@@ -21,19 +25,23 @@ export function Hero() {
       O `id` é o que o Header observa para saber quando trocar a cor da navegação.
     */
     <section
+      ref={ref}
       id="hero"
       className="relative min-h-[36rem] overflow-hidden md:min-h-[42rem] lg:min-h-[46rem]"
     >
-      <motion.img
-        src="/images/hero.png"
-        alt="Maquiadora finalizando o contorno dos lábios de uma noiva"
-        loading="eager"
-        decoding="async"
-        initial={{ scale: reduced ? 1 : 1.05 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.4, ease: EASE_OUT_EXPO }}
-        className="absolute inset-0 size-full object-cover object-right"
-      />
+      {/* A moldura é maior que a seção: a foto pode deslizar sem descolar das bordas. */}
+      <motion.div style={{ y }} className="absolute -inset-y-[12%] inset-x-0">
+        <motion.img
+          src="/images/hero.png"
+          alt="Maquiadora finalizando o contorno dos lábios de uma noiva"
+          loading="eager"
+          decoding="async"
+          initial={{ scale: reduced ? 1 : 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.4, ease: EASE_OUT_EXPO }}
+          className="absolute inset-0 size-full object-cover object-right"
+        />
+      </motion.div>
 
       {/*
         Véu escuro só do lado do texto. A foto já é escura à esquerda, então o

@@ -93,9 +93,10 @@ export function BridalPage() {
             <Reveal delay={0.15}>
               <div className="relative">
                 <Photo
-                  src="/images/bridal/hero.jpg"
+                  src="/images/noiva.jpg"
                   alt="Noiva pronta, com a maquiagem finalizada"
                   loading="eager"
+                  zoom
                   className="aspect-[4/5] rounded-[2.5rem] shadow-[0_50px_100px_-50px_rgba(26,21,18,0.5)]"
                 />
               </div>

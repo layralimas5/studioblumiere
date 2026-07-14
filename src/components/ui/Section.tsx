@@ -13,8 +13,11 @@ export function Container({
 }
 
 /**
- * `tone` alterna a temperatura do fundo. O ritmo entre os dois cremes é o que impede
+ * `tone` alterna a temperatura do fundo. O ritmo entre os cremes é o que impede
  * a página inteira de virar um bloco claro contínuo.
+ *
+ * `base` é a cor do corpo — não precisa de emenda. Os outros dois tons entram e saem
+ * em degradê (`section-blend`), então a troca de cor entre seções nunca é uma linha seca.
  */
 export function Section({
   id,
@@ -25,11 +28,12 @@ export function Section({
   id?: string
   children: ReactNode
   className?: string
-  tone?: 'base' | 'raised'
+  tone?: 'base' | 'raised' | 'soft'
 }) {
   const tones = {
     base: 'bg-cream-100',
-    raised: 'bg-cream-200',
+    raised: 'section-blend [--tone:var(--color-cream-200)]',
+    soft: 'section-blend [--tone:var(--color-cream-50)]',
   } as const
 
   return (

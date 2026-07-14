@@ -5,7 +5,7 @@ import { Reveal } from '@/components/ui/Reveal'
 
 export function Testimonials() {
   return (
-    <Section className="bg-cream-50">
+    <Section tone="soft">
       <Container>
         <SectionHeading eyebrow="Quem já sentou na cadeira" title="O que elas contam depois" />
 

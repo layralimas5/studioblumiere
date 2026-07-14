@@ -14,7 +14,7 @@ const promises = [
 
 export function BridalTeaser() {
   return (
-    <Section className="bg-cream-50 overflow-hidden">
+    <Section tone="soft" className="overflow-hidden">
       <div
         aria-hidden
         className="glow-warm pointer-events-none absolute -left-40 top-1/4 size-[36rem] rounded-full"
@@ -27,14 +27,14 @@ export function BridalTeaser() {
               <Photo
                 src="/images/noiva.jpg"
                 alt="Noiva com a maquiagem finalizada"
-                className="group aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
-                imgClassName="transition-transform duration-700 ease-out group-hover:scale-105"
+                zoom
+                className="aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
               />
               <Photo
                 src="/images/noiva-02.jpg"
                 alt="Detalhe da maquiagem de noiva"
-                className="group mt-10 aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
-                imgClassName="transition-transform duration-700 ease-out group-hover:scale-105"
+                zoom
+                className="mt-10 aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
               />
             </div>
           </Reveal>

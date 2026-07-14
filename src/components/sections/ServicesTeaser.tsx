@@ -39,7 +39,7 @@ function shapeFor(index: number): string {
 
 export function ServicesTeaser() {
   return (
-    <Section id="servicos" className="bg-white">
+    <Section id="servicos" tone="soft">
       <Container>
         <div className="grid gap-14 lg:grid-cols-[0.8fr_1.4fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -82,8 +82,8 @@ export function ServicesTeaser() {
                   <Photo
                     src={`/images/services/${category.id}.jpg`}
                     alt={category.label}
+                    zoom
                     className={`w-full rounded-2xl transition-shadow duration-500 group-hover:shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)] ${shapeFor(index)}`}
-                    imgClassName="transition-transform duration-700 group-hover:scale-105"
                   />
 
                   <h3 className="text-ink-900 group-hover:text-mocha-500 mt-4 text-sm font-medium transition-colors">

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { WhatsappFab } from './WhatsappFab'
@@ -43,6 +44,7 @@ export function Layout() {
         Pular para o conteúdo
       </a>
 
+      <ScrollProgress />
       <Header />
 
       <main id="conteudo" className="relative z-10">
@@ -51,6 +53,9 @@ export function Layout() {
 
       <Footer />
       <WhatsappFab />
+
+      {/* Textura por cima de tudo — inerte ao clique, invisível ao leitor de tela. */}
+      <div aria-hidden className="grain pointer-events-none fixed inset-0 z-[70]" />
     </>
   )
 }

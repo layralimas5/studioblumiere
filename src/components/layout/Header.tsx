@@ -14,7 +14,6 @@ const leftLinks = [
 const rightLinks = [
   { to: '/noivas', label: 'Noivas' },
   { to: '/galeria', label: 'Galeria' },
-  { to: '/#contato', label: 'Contato' },
 ]
 
 const allLinks = [...leftLinks, ...rightLinks]
