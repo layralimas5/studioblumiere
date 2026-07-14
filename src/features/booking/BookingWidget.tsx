@@ -11,8 +11,8 @@ import { ANY_PROFESSIONAL, useBooking } from './useBooking'
 
 function StepLabel({ step, children }: { step: number; children: string }) {
   return (
-    <h3 className="text-ivory-50 mb-5 flex items-center gap-3 text-sm font-medium">
-      <span className="border-gold-500/40 bg-gold-500/10 text-gold-400 flex size-7 shrink-0 items-center justify-center rounded-full border text-xs tabular-nums">
+    <h3 className="text-ink-900 mb-5 flex items-center gap-3 text-sm font-medium">
+      <span className="border-mocha-200 bg-mocha-500/[0.08] text-mocha-500 flex size-7 shrink-0 items-center justify-center rounded-full border text-xs tabular-nums">
         {step}
       </span>
       {children}
@@ -25,14 +25,14 @@ function optionClass(selected: boolean): string {
   return cn(
     'transition-all duration-200',
     selected
-      ? 'border-gold-500 bg-gold-500/10 shadow-[0_0_20px_-6px_rgba(201,169,97,0.5)]'
-      : 'border-night-700 hover:border-gold-500/50 hover:bg-white/[0.03]',
+      ? 'border-mocha-500 bg-mocha-500/[0.07] shadow-[0_0_0_1px_rgba(141,103,72,0.35)]'
+      : 'border-cream-300 hover:border-mocha-300 hover:bg-cream-100',
   )
 }
 
 function EmptyHint({ children }: { children: string }) {
   return (
-    <p className="border-night-700 text-ivory-500 rounded-xl border border-dashed p-7 text-center text-sm">
+    <p className="border-cream-300 text-ink-400 rounded-xl border border-dashed p-7 text-center text-sm">
       {children}
     </p>
   )
@@ -46,15 +46,10 @@ export function BookingWidget() {
   const { state, service, professional, eligibleProfessionals, availableSlots } = booking
 
   return (
-    <div className="surface border-night-700 bg-night-950/60 relative overflow-hidden rounded-3xl border shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-sm">
-      <div
-        aria-hidden
-        className="glow-gold pointer-events-none absolute -right-32 -top-32 size-96 rounded-full"
-      />
-
+    <div className="border-cream-300 relative overflow-hidden rounded-3xl border bg-white shadow-[0_50px_120px_-60px_rgba(26,21,18,0.5)]">
       <div className="relative grid lg:grid-cols-2">
         {/* Coluna 1 — o que e com quem */}
-        <div className="border-night-700/70 space-y-10 border-b p-7 md:p-10 lg:border-b-0 lg:border-r">
+        <div className="border-cream-300 space-y-10 border-b p-7 md:p-10 lg:border-b-0 lg:border-r">
           <div>
             <StepLabel step={1}>Escolha o serviço</StepLabel>
 
@@ -73,8 +68,8 @@ export function BookingWidget() {
                   className={cn(
                     'rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200',
                     category === cat.id
-                      ? 'from-gold-300 to-gold-500 text-night-950 bg-gradient-to-b'
-                      : 'border-night-700 text-ivory-400 hover:border-gold-500/50 hover:text-ivory-50 border',
+                      ? 'bg-mocha-500 text-cream-50'
+                      : 'border-cream-300 text-ink-500 hover:border-mocha-400 hover:text-ink-900 border',
                   )}
                 >
                   {cat.label}
@@ -109,17 +104,17 @@ export function BookingWidget() {
                       aria-hidden
                       className={cn(
                         'mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full border transition-colors',
-                        checked ? 'border-gold-400 bg-gold-400' : 'border-night-600',
+                        checked ? 'border-mocha-500 bg-mocha-500' : 'border-cream-300',
                       )}
                     >
                       {checked ? (
-                        <Check className="text-night-950 size-2.5" strokeWidth={3.5} />
+                        <Check className="text-cream-50 size-2.5" strokeWidth={3.5} />
                       ) : null}
                     </span>
 
                     <span className="min-w-0 flex-1">
-                      <span className="text-ivory-50 block text-sm font-medium">{item.name}</span>
-                      <span className="text-ivory-500 mt-1 block text-xs">
+                      <span className="text-ink-900 block text-sm font-medium">{item.name}</span>
+                      <span className="text-ink-400 mt-1 block text-xs">
                         {formatDuration(item.durationMin)} · {formatPrice(item.priceFrom)}
                       </span>
                     </span>
@@ -143,10 +138,10 @@ export function BookingWidget() {
                     optionClass(state.professionalId === ANY_PROFESSIONAL),
                   )}
                 >
-                  <span className="border-gold-500/25 bg-gold-500/10 text-gold-400 flex size-12 items-center justify-center rounded-full border">
+                  <span className="border-mocha-200 bg-mocha-500/[0.08] text-mocha-500 flex size-12 items-center justify-center rounded-full border">
                     <Sparkles className="size-5" aria-hidden />
                   </span>
-                  <span className="text-ivory-200 text-xs font-medium leading-tight">
+                  <span className="text-ink-700 text-xs font-medium leading-tight">
                     Sem preferência
                   </span>
                 </button>
@@ -170,10 +165,10 @@ export function BookingWidget() {
                         alt={pro.name}
                         className={cn(
                           'size-12 shrink-0 rounded-full ring-1 transition-colors',
-                          selected ? 'ring-gold-400' : 'ring-night-600',
+                          selected ? 'ring-mocha-500' : 'ring-cream-300',
                         )}
                       />
-                      <span className="text-ivory-200 text-xs font-medium leading-tight">
+                      <span className="text-ink-700 text-xs font-medium leading-tight">
                         {pro.name}
                       </span>
                     </button>
@@ -196,7 +191,7 @@ export function BookingWidget() {
               isDateAvailable={booking.isDateAvailable}
             />
             {professional ? (
-              <p className="text-ivory-500 mt-4 text-xs">
+              <p className="text-ink-400 mt-4 text-xs">
                 Mostrando apenas os dias em que {professional.name.split(' ')[0]} atende.
               </p>
             ) : null}
@@ -215,8 +210,8 @@ export function BookingWidget() {
                       onClick={() => booking.selectTime(slot)}
                       aria-pressed={state.time === slot}
                       className={cn(
-                        'text-ivory-200 rounded-lg border py-2.5 text-xs font-medium tabular-nums',
-                        state.time === slot && 'text-gold-300',
+                        'text-ink-700 rounded-lg border py-2.5 text-xs font-medium tabular-nums',
+                        state.time === slot && 'text-mocha-600',
                         optionClass(state.time === slot),
                       )}
                     >
@@ -234,45 +229,45 @@ export function BookingWidget() {
 
           <div className="space-y-4">
             <label className="block">
-              <span className="text-ivory-400 mb-2 block text-xs font-medium">
-                Seu nome <span className="text-ivory-500 font-normal">(opcional)</span>
+              <span className="text-ink-500 mb-2 block text-xs font-medium">
+                Seu nome <span className="text-ink-400 font-normal">(opcional)</span>
               </span>
               <input
                 type="text"
                 value={state.clientName}
                 onChange={(e) => booking.setClientName(e.target.value)}
                 placeholder="Como podemos te chamar?"
-                className="border-night-700 bg-night-900 text-ivory-50 placeholder:text-ivory-500 focus:border-gold-500/60 w-full rounded-lg border px-4 py-3 text-sm transition-colors"
+                className="border-cream-300 bg-cream-50 text-ink-900 placeholder:text-ink-400 focus:border-mocha-400 w-full rounded-lg border px-4 py-3 text-sm transition-colors"
               />
             </label>
 
             <label className="block">
-              <span className="text-ivory-400 mb-2 block text-xs font-medium">
-                Alguma observação? <span className="text-ivory-500 font-normal">(opcional)</span>
+              <span className="text-ink-500 mb-2 block text-xs font-medium">
+                Alguma observação? <span className="text-ink-400 font-normal">(opcional)</span>
               </span>
               <textarea
                 value={state.notes}
                 onChange={(e) => booking.setNotes(e.target.value)}
                 rows={2}
                 placeholder="Ex.: é para um casamento no fim do mês"
-                className="border-night-700 bg-night-900 text-ivory-50 placeholder:text-ivory-500 focus:border-gold-500/60 w-full resize-none rounded-lg border px-4 py-3 text-sm transition-colors"
+                className="border-cream-300 bg-cream-50 text-ink-900 placeholder:text-ink-400 focus:border-mocha-400 w-full resize-none rounded-lg border px-4 py-3 text-sm transition-colors"
               />
             </label>
           </div>
 
           {/* Resumo — fecha o loop antes do clique final */}
-          <div className="border-night-700/70 border-t pt-7">
+          <div className="border-cream-300 border-t pt-7">
             {booking.isComplete && service && state.date ? (
-              <div className="border-gold-500/20 bg-gold-500/[0.07] mb-5 rounded-xl border p-4">
-                <p className="text-ivory-50 text-sm font-medium">{service.name}</p>
-                <p className="text-ivory-400 mt-1.5 flex flex-wrap items-center gap-x-2 text-xs">
-                  <Clock className="text-gold-400 size-3" aria-hidden />
+              <div className="border-mocha-200 bg-mocha-500/[0.06] mb-5 rounded-xl border p-4">
+                <p className="text-ink-900 text-sm font-medium">{service.name}</p>
+                <p className="text-ink-500 mt-1.5 flex flex-wrap items-center gap-x-2 text-xs">
+                  <Clock className="text-mocha-500 size-3" aria-hidden />
                   <span className="first-letter-caps">{formatLongDate(state.date)}</span>
-                  <span aria-hidden className="text-night-600">
+                  <span aria-hidden className="text-cream-300">
                     ·
                   </span>
                   <span>{state.time}</span>
-                  <span aria-hidden className="text-night-600">
+                  <span aria-hidden className="text-cream-300">
                     ·
                   </span>
                   <span>{professional ? professional.name : 'Sem preferência'}</span>
@@ -293,7 +288,7 @@ export function BookingWidget() {
               Confirmar no WhatsApp
             </Button>
 
-            <p className="text-ivory-500 mt-4 text-center text-xs leading-relaxed">
+            <p className="text-ink-400 mt-4 text-center text-xs leading-relaxed">
               {booking.isComplete
                 ? 'Abrimos o WhatsApp com sua reserva já escrita. É só enviar.'
                 : 'Complete os quatro passos para liberar a reserva.'}

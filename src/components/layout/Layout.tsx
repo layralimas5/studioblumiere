@@ -38,14 +38,13 @@ export function Layout() {
     <>
       <a
         href="#conteudo"
-        className="bg-gold-400 text-night-950 sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
+        className="bg-mocha-500 text-cream-50 sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
       >
         Pular para o conteúdo
       </a>
 
       <Header />
 
-      {/* z-10 mantém o conteúdo acima da camada de grão aplicada no body */}
       <main id="conteudo" className="relative z-10">
         <Outlet />
       </main>

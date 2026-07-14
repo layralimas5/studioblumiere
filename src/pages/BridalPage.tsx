@@ -8,7 +8,7 @@ import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { whatsappUrl } from '@/lib/whatsapp'
 import { Button } from '@/components/ui/Button'
 import { Photo } from '@/components/ui/Photo'
-import { Card, Container, Eyebrow, Section, SectionHeading } from '@/components/ui/Section'
+import { Card, Container, Eyebrow, Script, Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { Testimonials } from '@/components/sections/Testimonials'
 import { BookingSection } from '@/components/sections/BookingSection'
@@ -49,10 +49,7 @@ export function BridalPage() {
   return (
     <>
       <Section className="overflow-hidden pt-36 md:pt-44">
-        <div
-          aria-hidden
-          className="glow-gold pointer-events-none absolute -left-40 top-10 size-[40rem] rounded-full"
-        />
+        <div aria-hidden className="leaf-shade pointer-events-none absolute inset-0" />
 
         <Container>
           <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
@@ -60,15 +57,15 @@ export function BridalPage() {
               <Reveal>
                 <Eyebrow>Noivas</Eyebrow>
 
-                <h1 className="font-display text-ivory-50 mt-8 text-balance text-6xl font-light leading-[1] md:text-7xl">
+                <h1 className="font-display text-ink-900 mt-8 text-balance text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
                   Você só vai
                   <br />
                   lembrar de
                   <br />
-                  <span className="text-gold-gradient italic">estar linda</span>.
+                  <Script>estar linda</Script>.
                 </h1>
 
-                <p className="text-ivory-400 mt-8 max-w-md text-pretty text-lg leading-relaxed">
+                <p className="text-ink-500 mt-8 max-w-md text-pretty text-lg leading-relaxed">
                   O resto — o horário, o retoque, a madrinha atrasada, o véu que não prende — é
                   problema nosso. Foi para isso que você nos contratou.
                 </p>
@@ -95,16 +92,11 @@ export function BridalPage() {
 
             <Reveal delay={0.15}>
               <div className="relative">
-                <div
-                  aria-hidden
-                  className="border-gold-500/25 absolute -left-4 -top-4 h-full w-full rounded-[2rem] border"
-                />
                 <Photo
                   src="/images/bridal/hero.jpg"
                   alt="Noiva pronta, com penteado e maquiagem finalizados"
                   loading="eager"
-                  overlay
-                  className="aspect-[4/5] rounded-[2rem] shadow-[0_40px_100px_-40px_rgba(0,0,0,0.9)]"
+                  className="aspect-[4/5] rounded-[2.5rem] shadow-[0_50px_100px_-50px_rgba(26,21,18,0.5)]"
                 />
               </div>
             </Reveal>
@@ -132,16 +124,18 @@ export function BridalPage() {
                 <Card interactive className="h-full p-7">
                   <span
                     aria-hidden
-                    className="font-display text-gold-gradient absolute right-5 top-4 text-5xl leading-none tabular-nums opacity-40"
+                    className="font-display text-mocha-200 absolute right-5 top-4 text-5xl font-semibold leading-none tabular-nums"
                   >
                     {String(index + 1).padStart(2, '0')}
                   </span>
 
-                  <h3 className="font-display text-ivory-50 text-3xl font-light">{phase.step}</h3>
-                  <p className="text-gold-500 mt-2 text-[0.625rem] font-medium uppercase tracking-[0.18em]">
+                  <h3 className="font-display text-ink-900 text-2xl font-semibold tracking-tight">
+                    {phase.step}
+                  </h3>
+                  <p className="text-mocha-500 mt-2 text-[0.625rem] font-medium uppercase tracking-[0.18em]">
                     {phase.when}
                   </p>
-                  <p className="text-ivory-400 mt-5 text-pretty text-sm leading-relaxed">
+                  <p className="text-ink-500 mt-5 text-pretty text-sm leading-relaxed">
                     {phase.text}
                   </p>
                 </Card>
@@ -170,21 +164,21 @@ export function BridalPage() {
               <motion.li key={service.id} variants={staggerItem}>
                 <Card interactive className="flex h-full flex-col p-8">
                   <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-display text-ivory-50 text-3xl font-light">
+                    <h3 className="font-display text-ink-900 text-2xl font-semibold tracking-tight">
                       {service.name}
                     </h3>
                     {service.featured ? (
-                      <span className="border-gold-500/40 bg-gold-500/10 text-gold-400 shrink-0 rounded-full border px-3 py-1 text-[0.625rem] font-medium uppercase tracking-wider">
+                      <span className="border-mocha-200 bg-mocha-500/[0.08] text-mocha-600 shrink-0 rounded-full border px-3 py-1 text-[0.625rem] font-medium uppercase tracking-wider">
                         Mais pedido
                       </span>
                     ) : null}
                   </div>
 
-                  <p className="text-ivory-400 mt-4 flex-1 text-pretty text-sm leading-relaxed">
+                  <p className="text-ink-500 mt-4 flex-1 text-pretty text-sm leading-relaxed">
                     {service.description}
                   </p>
 
-                  <p className="border-night-700/80 text-ivory-500 mt-7 border-t pt-6 text-xs">
+                  <p className="border-cream-300 text-ink-400 mt-7 border-t pt-6 text-xs">
                     {formatDuration(service.durationMin)} · {formatPrice(service.priceFrom)}
                   </p>
                 </Card>

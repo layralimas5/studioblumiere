@@ -5,12 +5,12 @@ type Variant = 'primary' | 'secondary' | 'ghost'
 type Size = 'md' | 'lg'
 
 const variants: Record<Variant, string> = {
-  /* Dourado sólido: o único elemento verdadeiramente brilhante da tela. */
+  /* Café sólido: a única cor saturada da tela — por isso é sempre o próximo passo. */
   primary:
-    'bg-gradient-to-b from-gold-300 to-gold-500 text-night-950 shadow-[0_0_0_1px_rgba(201,169,97,0.5),0_8px_30px_-8px_rgba(201,169,97,0.5)] hover:shadow-[0_0_0_1px_rgba(228,205,155,0.7),0_10px_40px_-6px_rgba(201,169,97,0.7)] hover:-translate-y-px',
+    'bg-mocha-500 text-cream-50 shadow-[0_10px_30px_-12px_rgba(141,103,72,0.65)] hover:bg-mocha-600 hover:-translate-y-px hover:shadow-[0_14px_36px_-12px_rgba(141,103,72,0.75)]',
   secondary:
-    'border border-gold-500/30 text-ivory-200 hover:border-gold-400/70 hover:text-ivory-50 hover:bg-gold-500/5',
-  ghost: 'text-ivory-400 hover:text-ivory-50 hover:bg-white/5',
+    'border border-ink-900/15 text-ink-900 hover:border-mocha-400 hover:bg-mocha-500/[0.06]',
+  ghost: 'text-ink-500 hover:text-ink-900 hover:bg-ink-900/5',
 }
 
 const sizes: Record<Size, string> = {

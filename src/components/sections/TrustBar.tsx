@@ -27,18 +27,18 @@ const pillars = [
 
 export function TrustBar() {
   return (
-    <div className="border-night-700/60 bg-night-900 border-y py-12">
+    <div className="border-cream-300 bg-cream-200 border-y py-12">
       <Container>
         <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar, index) => (
             <Reveal key={pillar.title} delay={index * 0.06}>
               <li className="flex gap-4">
-                <span className="border-gold-500/25 bg-gold-500/5 flex size-10 shrink-0 items-center justify-center rounded-full border">
-                  <pillar.icon className="text-gold-400 size-4" aria-hidden />
+                <span className="border-mocha-200 bg-mocha-500/[0.08] flex size-10 shrink-0 items-center justify-center rounded-full border">
+                  <pillar.icon className="text-mocha-500 size-4" aria-hidden />
                 </span>
                 <div>
-                  <p className="text-ivory-50 text-sm font-medium">{pillar.title}</p>
-                  <p className="text-ivory-400 mt-1.5 text-sm leading-relaxed">{pillar.text}</p>
+                  <p className="text-ink-900 text-sm font-medium">{pillar.title}</p>
+                  <p className="text-ink-500 mt-1.5 text-sm leading-relaxed">{pillar.text}</p>
                 </div>
               </li>
             </Reveal>

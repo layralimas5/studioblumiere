@@ -6,7 +6,7 @@ import { staggerContainer, staggerItem } from '@/lib/motion'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { Button } from '@/components/ui/Button'
 import { Photo } from '@/components/ui/Photo'
-import { Card, Container, Section, SectionHeading } from '@/components/ui/Section'
+import { Card, Container, Script, Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { BookingSection } from '@/components/sections/BookingSection'
 
@@ -21,7 +21,7 @@ export function ServicesPage() {
       <Section className="overflow-hidden pt-36 md:pt-44">
         <div
           aria-hidden
-          className="glow-gold pointer-events-none absolute -top-40 left-1/2 size-[40rem] -translate-x-1/2 rounded-full"
+          className="glow-warm pointer-events-none absolute -top-40 left-1/2 size-[40rem] -translate-x-1/2 rounded-full"
         />
 
         <Container>
@@ -32,7 +32,7 @@ export function ServicesPage() {
               <>
                 Tudo o que fazemos,
                 <br />
-                <span className="text-gold-gradient italic">sem letra miúda</span>
+                <Script>sem letra miúda</Script>
               </>
             }
             description="Preços a partir de — o valor final depende do comprimento do cabelo, do volume e do que combinarmos na avaliação. Nada de surpresa no caixa."
@@ -45,7 +45,7 @@ export function ServicesPage() {
                 <a
                   key={category.id}
                   href={`#${category.id}`}
-                  className="border-night-700 text-ivory-400 hover:border-gold-500/50 hover:text-gold-400 rounded-full border px-4 py-2 text-xs font-medium transition-colors"
+                  className="border-cream-300 text-ink-500 hover:border-mocha-400 hover:text-mocha-500 rounded-full border bg-white px-4 py-2 text-xs font-medium transition-colors"
                 >
                   {category.label}
                 </a>
@@ -72,12 +72,12 @@ export function ServicesPage() {
                     <Photo
                       src={`/images/services/${category.id}.jpg`}
                       alt={category.label}
-                      className="mb-7 aspect-[4/3] w-full rounded-2xl shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]"
+                      className="mb-7 aspect-[4/3] w-full rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
                     />
-                    <h2 className="font-display text-ivory-50 text-4xl font-light md:text-5xl">
+                    <h2 className="font-display text-ink-900 text-3xl font-semibold tracking-tight md:text-4xl">
                       {category.label}
                     </h2>
-                    <p className="text-ivory-400 mt-4 text-pretty text-sm leading-relaxed">
+                    <p className="text-ink-500 mt-4 text-pretty text-sm leading-relaxed">
                       {category.tagline}
                     </p>
                   </div>
@@ -94,19 +94,19 @@ export function ServicesPage() {
                     <motion.li key={service.id} variants={staggerItem}>
                       <Card interactive className="p-7">
                         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-                          <h3 className="font-display text-ivory-50 text-2xl font-light">
+                          <h3 className="font-display text-ink-900 text-xl font-medium">
                             {service.name}
                           </h3>
-                          <p className="text-gold-400 text-sm font-medium">
+                          <p className="text-mocha-500 text-sm font-medium">
                             {formatPrice(service.priceFrom)}
                           </p>
                         </div>
 
-                        <p className="text-ivory-400 mt-3 text-pretty text-sm leading-relaxed">
+                        <p className="text-ink-500 mt-3 text-pretty text-sm leading-relaxed">
                           {service.description}
                         </p>
 
-                        <p className="text-ivory-500 mt-5 flex items-center gap-1.5 text-xs">
+                        <p className="text-ink-400 mt-5 flex items-center gap-1.5 text-xs">
                           <Clock className="size-3.5" aria-hidden />
                           {formatDuration(service.durationMin)}
                         </p>
@@ -140,11 +140,11 @@ export function ServicesPage() {
                 <Photo
                   src={pro.photo}
                   alt={pro.name}
-                  className="ring-night-700 group-hover:ring-gold-500/50 mx-auto aspect-square w-full max-w-[11rem] rounded-2xl ring-1 transition-all duration-500"
+                  className="ring-cream-300 group-hover:ring-mocha-300 mx-auto aspect-square w-full max-w-[11rem] rounded-2xl ring-1 transition-all duration-500"
                   imgClassName="transition-transform duration-700 group-hover:scale-105"
                 />
-                <p className="text-ivory-50 mt-5 text-sm font-medium">{pro.name}</p>
-                <p className="text-gold-500 mt-1.5 text-xs leading-snug">{pro.role}</p>
+                <p className="text-ink-900 mt-5 text-sm font-medium">{pro.name}</p>
+                <p className="text-mocha-500 mt-1.5 text-xs leading-snug">{pro.role}</p>
               </motion.li>
             ))}
           </motion.ul>

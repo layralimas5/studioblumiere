@@ -14,7 +14,7 @@ function glowFor(seed: string): string {
 
 /**
  * Imagem com fallback embutido. Enquanto as fotos reais não chegam, o lugar delas é
- * ocupado por uma moldura escura com brilho dourado — não por um bloco vazio.
+ * ocupado por uma moldura champagne da marca — não por um bloco vazio.
  */
 export function Photo({
   src,
@@ -29,27 +29,25 @@ export function Photo({
   className?: string
   imgClassName?: string
   loading?: 'lazy' | 'eager'
-  /** Escurece a base da imagem — necessário quando há texto por cima. */
+  /** Escurece a base da imagem — necessário quando há texto claro por cima. */
   overlay?: boolean
 }) {
   const [failed, setFailed] = useState(false)
 
   return (
-    <div className={cn('bg-night-900 relative overflow-hidden', className)}>
+    <div className={cn('bg-cream-200 relative overflow-hidden', className)}>
       {failed ? (
         <div role="img" aria-label={alt} className="absolute inset-0">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `radial-gradient(ellipse ${glowFor(alt)}, rgb(201 169 97 / 0.5), rgb(139 111 61 / 0.22) 38%, rgb(30 26 21) 72%)`,
+              backgroundImage: `radial-gradient(ellipse ${glowFor(alt)}, rgb(220 196 170 / 0.9), rgb(239 225 211) 45%, rgb(247 242 236) 80%)`,
             }}
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display text-ivory-50/40 select-none text-3xl italic tracking-wide">
-              Lumière
-            </span>
+            <span className="font-script text-mocha-500/50 select-none text-4xl">Lumière</span>
           </div>
-          <div className="ring-gold-500/20 absolute inset-0 ring-1 ring-inset" />
+          <div className="ring-mocha-300/30 absolute inset-0 ring-1 ring-inset" />
         </div>
       ) : (
         <img
@@ -66,7 +64,7 @@ export function Photo({
       {overlay && !failed ? (
         <div
           aria-hidden
-          className="from-night-950 via-night-950/30 absolute inset-0 bg-gradient-to-t to-transparent"
+          className="from-ink-900/75 via-ink-900/20 absolute inset-0 bg-gradient-to-t to-transparent"
         />
       ) : null}
     </div>

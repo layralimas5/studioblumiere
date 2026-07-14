@@ -1,5 +1,5 @@
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
-import { Container, Section, SectionHeading } from '@/components/ui/Section'
+import { Container, Script, Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { GalleryGrid } from '@/components/sections/GalleryGrid'
 import { BookingSection } from '@/components/sections/BookingSection'
@@ -15,7 +15,7 @@ export function GalleryPage() {
       <Section className="overflow-hidden pt-36 md:pt-44">
         <div
           aria-hidden
-          className="glow-gold pointer-events-none absolute -top-40 left-1/2 size-[40rem] -translate-x-1/2 rounded-full"
+          className="glow-warm pointer-events-none absolute -top-40 left-1/2 size-[40rem] -translate-x-1/2 rounded-full"
         />
 
         <Container>
@@ -26,7 +26,7 @@ export function GalleryPage() {
               <>
                 O nosso trabalho,
                 <br />
-                <span className="text-gold-gradient italic">sem filtro</span>
+                <Script>sem filtro</Script>
               </>
             }
             description="Fotos reais de clientes reais. Filtre pela categoria que te interessa."

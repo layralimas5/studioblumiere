@@ -1,5 +1,5 @@
 import { BookingWidget } from '@/features/booking/BookingWidget'
-import { Container, Section, SectionHeading } from '@/components/ui/Section'
+import { Container, Script, Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 
 export function BookingSection() {
@@ -7,7 +7,7 @@ export function BookingSection() {
     <Section id="agendar" className="overflow-hidden">
       <div
         aria-hidden
-        className="glow-gold pointer-events-none absolute left-1/2 top-0 size-[44rem] -translate-x-1/2 rounded-full"
+        className="glow-warm pointer-events-none absolute left-1/2 top-0 size-[44rem] -translate-x-1/2 rounded-full"
       />
 
       <Container>
@@ -16,8 +16,7 @@ export function BookingSection() {
           title={
             <>
               Escolha o serviço, a profissional
-              <br className="hidden md:block" /> e{' '}
-              <span className="text-gold-gradient italic">o seu horário</span>
+              <br className="hidden md:block" /> e <Script>o seu horário</Script>
             </>
           }
           description="Em menos de um minuto. Sem cadastro, sem app, sem esperar ninguém responder para saber se tem vaga."

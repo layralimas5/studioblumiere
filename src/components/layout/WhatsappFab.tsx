@@ -12,7 +12,7 @@ export function WhatsappFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar com o salão no WhatsApp"
-      className="from-gold-300 to-gold-500 text-night-950 fixed bottom-6 right-6 z-40 flex size-14 items-center justify-center rounded-full bg-gradient-to-b shadow-[0_10px_40px_-8px_rgba(201,169,97,0.6)] transition-transform duration-200 hover:scale-105 active:scale-95"
+      className="bg-mocha-500 text-cream-50 hover:bg-mocha-600 fixed bottom-6 right-6 z-40 flex size-14 items-center justify-center rounded-full shadow-[0_14px_40px_-10px_rgba(141,103,72,0.8)] transition-all duration-200 hover:scale-105 active:scale-95"
     >
       <MessageCircle className="size-6" aria-hidden />
     </a>

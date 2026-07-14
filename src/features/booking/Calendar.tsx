@@ -51,14 +51,14 @@ export function Calendar({
           onClick={() => setMonth((m) => addMonths(m, -1))}
           disabled={!canGoBack}
           aria-label="Mês anterior"
-          className="text-ivory-400 hover:text-gold-400 rounded-full p-2 transition-colors hover:bg-white/5 disabled:pointer-events-none disabled:opacity-25"
+          className="text-ink-500 hover:text-mocha-500 hover:bg-cream-100 rounded-full p-2 transition-colors disabled:pointer-events-none disabled:opacity-25"
         >
           <ChevronLeft className="size-4" aria-hidden />
         </button>
 
         <p
           aria-live="polite"
-          className="font-display text-ivory-50 first-letter-caps text-lg font-light"
+          className="font-display text-ink-900 first-letter-caps text-base font-medium"
         >
           {formatMonth(month)}
         </p>
@@ -68,7 +68,7 @@ export function Calendar({
           onClick={() => setMonth((m) => addMonths(m, 1))}
           disabled={!canGoForward}
           aria-label="Próximo mês"
-          className="text-ivory-400 hover:text-gold-400 rounded-full p-2 transition-colors hover:bg-white/5 disabled:pointer-events-none disabled:opacity-25"
+          className="text-ink-500 hover:text-mocha-500 hover:bg-cream-100 rounded-full p-2 transition-colors disabled:pointer-events-none disabled:opacity-25"
         >
           <ChevronRight className="size-4" aria-hidden />
         </button>
@@ -79,7 +79,7 @@ export function Calendar({
           <abbr
             key={index}
             title={WEEKDAY_NAMES[index]}
-            className="text-ivory-500 py-1 text-center text-[0.625rem] font-medium uppercase tracking-widest no-underline"
+            className="text-ink-400 py-1 text-center text-[0.625rem] font-medium uppercase tracking-widest no-underline"
           >
             {initial}
           </abbr>
@@ -104,11 +104,11 @@ export function Calendar({
               className={cn(
                 'aspect-square rounded-lg text-sm tabular-nums transition-all duration-200',
                 isSelected
-                  ? 'from-gold-300 to-gold-500 text-night-950 bg-gradient-to-b font-medium shadow-[0_0_20px_-4px_rgba(201,169,97,0.7)]'
+                  ? 'bg-mocha-500 text-cream-50 font-medium shadow-[0_8px_20px_-8px_rgba(141,103,72,0.9)]'
                   : available
-                    ? 'text-ivory-200 hover:bg-gold-500/15 hover:text-gold-300'
-                    : 'text-ivory-500/25 cursor-not-allowed',
-                isSameDay(date, today) && !isSelected && 'ring-gold-500/50 ring-1',
+                    ? 'text-ink-700 hover:bg-mocha-500/10 hover:text-mocha-600'
+                    : 'text-ink-400/40 cursor-not-allowed',
+                isSameDay(date, today) && !isSelected && 'ring-mocha-300 ring-1',
               )}
             >
               {date.getDate()}
