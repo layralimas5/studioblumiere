@@ -164,11 +164,9 @@ export const services: Service[] = [
 ]
 
 /**
- * Cada profissional recebe os agendamentos no próprio WhatsApp.
+ * Cada profissional recebe os pedidos de agendamento no próprio WhatsApp.
  *
- * TODO(cliente): confirmar `worksOn` — hoje está terça a sábado para todas, seguindo o
- * horário do salão. `worksOn` controla quais dias o calendário libera para cada uma
- * (0 = domingo … 6 = sábado). Confirmar também o sobrenome de cada uma.
+ * TODO(cliente): confirmar o sobrenome de cada uma.
  */
 export const professionals: Professional[] = [
   {
@@ -177,7 +175,6 @@ export const professionals: Professional[] = [
     role: 'Maquiadora · Especialista em noivas',
     specialties: ['maquiagem', 'noivas'],
     photo: '/images/team/maquiagem.png',
-    worksOn: [2, 3, 4, 5, 6],
     whatsapp: '5527996020014',
   },
   {
@@ -186,7 +183,6 @@ export const professionals: Professional[] = [
     role: 'Lash designer · Brow expert',
     specialties: ['cilios', 'sobrancelhas'],
     photo: '/images/team/lash-designer.png',
-    worksOn: [2, 3, 4, 5, 6],
     whatsapp: '5527992970437',
   },
   {
@@ -195,7 +191,6 @@ export const professionals: Professional[] = [
     role: 'Nail designer',
     specialties: ['unhas'],
     photo: '/images/team/nail-designer.png',
-    worksOn: [2, 3, 4, 5, 6],
     whatsapp: '5527999367381',
   },
 ]
@@ -246,7 +241,7 @@ export const faq: FaqItem[] = [
     id: 'f1',
     question: 'Como funciona o agendamento pelo site?',
     answer:
-      'Você escolhe o serviço, a profissional e o melhor horário aqui mesmo. Ao finalizar, abrimos uma conversa no WhatsApp da própria profissional, com tudo já preenchido — é só enviar. Ela confirma a reserva em poucos minutos, dentro do horário de atendimento.',
+      'Você escolhe o serviço e, se quiser, a profissional. Abrimos então uma conversa no WhatsApp dela com tudo já escrito — é só enviar. O horário é combinado ali mesmo, direto com quem vai te atender, dentro do horário de funcionamento do salão.',
   },
   {
     id: 'f2',

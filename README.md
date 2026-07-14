@@ -18,7 +18,7 @@ o site.
 
 | Arquivo | O que tem lá |
 | --- | --- |
-| `src/content/site.ts` | WhatsApp, e-mail, endereço, Instagram, horários e os horários oferecidos no agendador |
+| `src/content/site.ts` | WhatsApp, e-mail, endereço, Instagram e horário de funcionamento |
 | `src/content/catalog.ts` | Serviços (nome, preço, duração), profissionais, galeria, depoimentos e FAQ |
 
 Tudo que está marcado com `[PLACEHOLDER]` é dado inventado e **precisa** ser substituído:
@@ -28,8 +28,7 @@ Tudo que está marcado com `[PLACEHOLDER]` é dado inventado e **precisa** ser s
    inventado de avaliação é propaganda enganosa; use os dados reais do Google ou remova a seção.
 3. **Depoimentos** (`testimonials`) — trocar pelos reais, com autorização das clientes.
 4. **Preços e durações** (`services`) — conferir um a um com a dona do salão.
-5. **Equipe** (`professionals`) — nomes, cargos, especialidades e os dias que cada uma atende
-   (`worksOn`: `0` = domingo … `6` = sábado). O calendário do agendamento respeita esse campo.
+5. **Equipe** (`professionals`) — nomes, cargos, especialidades e o WhatsApp de cada uma.
 6. **Domínio e dados estruturados** — `index.html` (canonical, Open Graph e o bloco JSON-LD com
    endereço e telefone) e `public/sitemap.xml`.
 
@@ -60,20 +59,20 @@ carregamento.
 
 ## Como funciona o agendamento
 
-Não há backend. `src/features/booking/` mantém o estado (serviço → profissional → data → horário) e
-gera um link `wa.me` com a mensagem escrita. A cliente confere e envia; o salão confirma no WhatsApp.
+Não há backend nem calendário. `src/features/booking/` mantém o estado (serviço → profissional) e
+gera um link `wa.me` com a mensagem escrita. A cliente confere e envia; o horário é combinado na
+conversa, direto com quem vai atender.
 
 Regras já implementadas:
 
 - Só aparecem as profissionais que atendem a **categoria do serviço** escolhido.
-- O calendário desabilita datas passadas e os dias em que a profissional escolhida **não trabalha**.
-- Os horários de hoje que já passaram não são oferecidos.
-- O botão de confirmar só habilita com os quatro passos preenchidos.
+- Escolher a profissional é **opcional**: sem escolha, a conversa vai para o WhatsApp geral do salão;
+  com escolha, vai para o número dela (`professionals[].whatsapp`).
+- O botão só habilita depois que um serviço é selecionado.
 
-Limitação conhecida: como não há banco, o site **não sabe se o horário já foi reservado** por outra
-cliente — a confirmação final é humana, pelo WhatsApp. Quando o volume justificar, o caminho é trocar
-essa camada por Supabase (tabelas `services`, `professionals`, `availability`, `bookings`) mantendo a
-mesma interface: o hook `useBooking` já isola essa lógica do resto da UI.
+Se um dia a disponibilidade em tempo real fizer sentido, o caminho é trocar essa camada por Supabase
+(tabelas `services`, `professionals`, `availability`, `bookings`) mantendo a mesma interface: o hook
+`useBooking` já isola essa lógica do resto da UI.
 
 ## Stack
 
