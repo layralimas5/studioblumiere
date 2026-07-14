@@ -27,7 +27,7 @@ function ColumnTitle({ children }: { children: string }) {
 export function Footer() {
   return (
     <footer id="contato" className="relative scroll-mt-24">
-      <div className="border-mocha-200 bg-mocha-100 relative overflow-hidden border-t pb-16 pt-20">
+      <div className="border-cream-300 bg-cream-50 relative overflow-hidden border-t pb-16 pt-20">
         <div
           aria-hidden
           className="glow-warm pointer-events-none absolute -bottom-64 left-1/2 size-[40rem] -translate-x-1/2 rounded-full"
