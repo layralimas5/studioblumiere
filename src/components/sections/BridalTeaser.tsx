@@ -27,12 +27,14 @@ export function BridalTeaser() {
               <Photo
                 src="/images/noiva.jpg"
                 alt="Noiva com a maquiagem finalizada"
-                className="aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
+                className="group aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
+                imgClassName="transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <Photo
                 src="/images/noiva-02.jpg"
                 alt="Detalhe da maquiagem de noiva"
-                className="mt-10 aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
+                className="group mt-10 aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
+                imgClassName="transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </Reveal>
