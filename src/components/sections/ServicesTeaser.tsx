@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { categories, services } from '@/content/catalog'
 import type { Category, Service } from '@/content/types'
 import { formatDuration, formatPrice } from '@/lib/format'
@@ -22,17 +22,17 @@ const highlights: Highlight[] = categories.flatMap((category) => {
 })
 
 /**
- * Colagem: cada terceiro item ganha uma proporção mais alta e um deslocamento vertical.
- * É o que quebra a leitura de "grade de cards" e dá o ar editorial da referência.
+ * Colagem: as proporções alternam e os cards se deslocam na vertical. É o que quebra a
+ * leitura de "grade" e dá o ar de editorial de revista.
  */
 function shapeFor(index: number): string {
   const shapes = [
     'aspect-[4/5]',
-    'aspect-square md:mt-10',
+    'aspect-[3/4] md:mt-12',
     'aspect-[4/5] md:-mt-6',
-    'aspect-square md:mt-4',
-    'aspect-[4/5] md:mt-12',
-    'aspect-square md:-mt-2',
+    'aspect-[3/4] md:mt-6',
+    'aspect-[4/5] md:mt-14',
+    'aspect-[3/4] md:-mt-2',
   ] as const
   return shapes[index % shapes.length] ?? shapes[0]
 }
@@ -74,24 +74,63 @@ export function ServicesTeaser() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-60px' }}
-            className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2"
           >
             {highlights.map(({ category, service }, index) => (
               <motion.li key={category.id} variants={staggerItem}>
-                <Link to={`/servicos#${category.id}`} className="group block">
+                <Link
+                  to={`/servicos#${category.id}`}
+                  className="group relative block overflow-hidden rounded-3xl shadow-[0_20px_50px_-35px_rgba(26,21,18,0.6)] transition-shadow duration-500 hover:shadow-[0_40px_80px_-40px_rgba(26,21,18,0.7)]"
+                >
+                  {/*
+                    O texto vive SOBRE a foto — por isso o véu escuro (`overlay`) não é enfeite:
+                    é o que garante o contraste do título em qualquer imagem.
+                  */}
                   <Photo
                     src={`/images/services/${category.id}.jpg`}
                     alt={category.label}
                     zoom
-                    className={`w-full rounded-2xl transition-shadow duration-500 group-hover:shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)] ${shapeFor(index)}`}
+                    overlay
+                    className={`w-full rounded-3xl ${shapeFor(index)}`}
                   />
 
-                  <h3 className="text-ink-900 group-hover:text-mocha-500 mt-4 text-sm font-medium transition-colors">
-                    {category.label}
-                  </h3>
-                  <p className="text-ink-400 mt-1 text-xs">
-                    {formatDuration(service.durationMin)} · {formatPrice(service.priceFrom)}
-                  </p>
+                  {/* O topo da foto pode ser claro: sem a sombra, o número sumiria nele. */}
+                  <span
+                    aria-hidden
+                    className="font-display text-cream-50/70 absolute right-5 top-4 text-sm font-medium tabular-nums drop-shadow-[0_1px_6px_rgba(26,21,18,0.7)]"
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                    <h3 className="font-display text-cream-50 text-2xl font-semibold tracking-tight">
+                      {category.label}
+                    </h3>
+
+                    <p className="text-cream-200 mt-1.5 line-clamp-2 text-pretty text-xs leading-relaxed">
+                      {category.tagline}
+                    </p>
+
+                    <div className="border-cream-50/20 mt-4 flex items-center justify-between gap-3 border-t pt-3.5">
+                      <p className="text-cream-100 text-[0.6875rem] tracking-wide">
+                        {formatDuration(service.durationMin)} · {formatPrice(service.priceFrom)}
+                      </p>
+
+                      {/* O disco vira café e a seta salta ao passar o mouse — o convite ao clique. */}
+                      <span className="border-cream-50/30 text-cream-50 group-hover:bg-mocha-500 group-hover:border-mocha-500 flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300">
+                        <ArrowUpRight
+                          className="size-4 transition-transform duration-300 group-hover:-translate-y-px group-hover:translate-x-px motion-reduce:transform-none"
+                          aria-hidden
+                        />
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Fio de luz por dentro da borda: recorta o card do creme sem virar moldura. */}
+                  <span
+                    aria-hidden
+                    className="ring-cream-50/15 pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset"
+                  />
                 </Link>
               </motion.li>
             ))}
