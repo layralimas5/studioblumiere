@@ -118,7 +118,7 @@ export function Footer() {
         </Container>
       </div>
 
-      <div className="bg-mocha-700">
+      <div className="bg-mocha-900">
         <Container>
           <div className="text-cream-200 flex flex-col gap-2 py-5 text-xs sm:flex-row sm:items-center sm:justify-between">
             <p>

@@ -25,12 +25,12 @@ export function BridalTeaser() {
           <Reveal className="order-2 lg:order-1">
             <div className="grid grid-cols-2 gap-5">
               <Photo
-                src="/images/bridal/noiva-1.jpg"
+                src="/images/noiva.jpg"
                 alt="Noiva com a maquiagem finalizada"
                 className="aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
               />
               <Photo
-                src="/images/bridal/noiva-2.jpg"
+                src="/images/noiva-02.jpg"
                 alt="Detalhe da maquiagem de noiva"
                 className="mt-10 aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
               />
