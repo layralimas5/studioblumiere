@@ -16,8 +16,14 @@ export function Hero() {
   })
 
   return (
-    /* Banner de sangria total: sobe por trás do menu, que fica claro enquanto está sobre ele. */
-    <section className="relative min-h-[36rem] overflow-hidden md:min-h-[42rem] lg:min-h-[46rem]">
+    /*
+      Banner de sangria total: sobe por trás do menu, que fica claro enquanto está sobre ele.
+      O `id` é o que o Header observa para saber quando trocar a cor da navegação.
+    */
+    <section
+      id="hero"
+      className="relative min-h-[36rem] overflow-hidden md:min-h-[42rem] lg:min-h-[46rem]"
+    >
       <motion.img
         src="/images/hero.png"
         alt="Maquiadora finalizando o contorno dos lábios de uma noiva"

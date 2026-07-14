@@ -19,8 +19,12 @@ const rightLinks = [
 
 const allLinks = [...leftLinks, ...rightLinks]
 
+/** Altura do menu: o observador só considera "sobre o banner" a faixa que ele ocupa. */
+const HEADER_HEIGHT = 80
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const [onHero, setOnHero] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation()
 
@@ -31,14 +35,32 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  /**
+   * A cor da navegação não pode depender do scroll: o banner tem centenas de pixels
+   * de altura, e trocar para tinta escura no primeiro pixel rolado apagaria os links
+   * sobre a foto. O que importa é se o menu ainda repousa sobre o banner — e é isso
+   * que o observador responde, recortando do topo a faixa ocupada pelo próprio menu.
+   */
+  useEffect(() => {
+    const hero = document.getElementById('hero')
+    if (!hero) {
+      setOnHero(false)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setOnHero(entry?.isIntersecting ?? false),
+      { rootMargin: `-${HEADER_HEIGHT}px 0px 0px 0px` },
+    )
+
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [pathname])
+
   // Uma navegação não deve deixar o menu mobile aberto por cima da página nova.
   useEffect(() => setMenuOpen(false), [pathname])
 
-  /**
-   * Só a home tem o banner subindo por trás do menu. Enquanto ele estiver ali,
-   * a navegação é clara sobre a foto; ao rolar, vira tinta escura sobre o creme.
-   */
-  const overBanner = pathname === '/' && !scrolled && !menuOpen
+  const overBanner = onHero && !menuOpen
 
   const navClass = ({ isActive }: { isActive: boolean }): string =>
     cn(
@@ -57,7 +79,7 @@ export function Header() {
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         // Ao rolar: só desfoque, sem cor de fundo — a página continua aparecendo por baixo.
-        overBanner ? '' : 'backdrop-blur-md',
+        scrolled && 'backdrop-blur-md',
       )}
     >
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-6">
