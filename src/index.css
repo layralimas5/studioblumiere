@@ -7,6 +7,18 @@
   --color-cream-200: #efe7dd;
   --color-cream-300: #e3d8ca;
 
+  /*
+   * Um fundo por categoria de serviço. Todos moram na mesma família quente e na mesma
+   * luminosidade (~94%): a diferença é de matiz, não de contraste. Assim cada seção tem
+   * identidade sem que a página vire um arco-íris — e o texto escuro continua legível
+   * em qualquer uma delas.
+   */
+  --color-tint-noivas: #f7f0e4;
+  --color-tint-maquiagem: #f8ebe6;
+  --color-tint-cilios: #eeeae3;
+  --color-tint-unhas: #f4ece6;
+  --color-tint-sobrancelhas: #f0ece4;
+
   /* Café — o único accent. Botões, filetes e a assinatura em script. */
   --color-mocha-100: #efe1d3;
   --color-mocha-200: #dcc4aa;

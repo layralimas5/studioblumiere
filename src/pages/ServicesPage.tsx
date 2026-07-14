@@ -50,7 +50,7 @@ export function ServicesPage() {
           <Section
             key={category.id}
             id={category.id}
-            tone={index % 2 === 0 ? 'raised' : 'base'}
+            tint={`var(--color-tint-${category.id})`}
             className="py-20"
           >
             <Container>
