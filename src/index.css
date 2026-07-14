@@ -1,0 +1,115 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Carvão quente — nunca preto puro, senão a tela "apaga" e some a profundidade */
+  --color-night-950: #0b0908;
+  --color-night-900: #12100d;
+  --color-night-850: #171410;
+  --color-night-800: #1e1a15;
+  --color-night-700: #2a251e;
+  --color-night-600: #3a332a;
+
+  /* Dourado — o único accent. Champagne no texto, âmbar no brilho */
+  --color-gold-200: #f0e2c2;
+  --color-gold-300: #e4cd9b;
+  --color-gold-400: #d4b478;
+  --color-gold-500: #c9a961;
+  --color-gold-600: #a3854a;
+
+  /* Tinta sobre o escuro: marfim, nunca branco puro */
+  --color-ivory-50: #faf6f0;
+  --color-ivory-200: #e8dfd2;
+  --color-ivory-400: #b3a695;
+  --color-ivory-500: #8f8474;
+
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-night-950 text-ivory-200 font-sans antialiased;
+  }
+
+  /*
+   * Grão de filme sobre a página inteira. É o detalhe que separa um fundo escuro
+   * "chapado de CSS" de um fundo escuro que parece impresso. Fica atrás de tudo.
+   */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    @apply ring-gold-400 ring-offset-night-950 outline-none ring-2 ring-offset-2;
+  }
+
+  ::selection {
+    @apply bg-gold-500/30 text-ivory-50;
+  }
+}
+
+@layer utilities {
+  /* Filete dourado que abre e fecha seções — o "fio de ouro" da marca */
+  .rule-gold {
+    @apply from-gold-500/0 via-gold-500/50 to-gold-500/0 h-px w-full bg-gradient-to-r;
+  }
+
+  /* Halo âmbar difuso: cria profundidade atrás de heros e cards */
+  .glow-gold {
+    background: radial-gradient(
+      circle at center,
+      rgb(201 169 97 / 0.18) 0%,
+      rgb(201 169 97 / 0.06) 40%,
+      transparent 70%
+    );
+  }
+
+  /* Superfície de card: gradiente sutil, nunca uma cor plana */
+  .surface {
+    background-image: linear-gradient(
+      160deg,
+      rgb(255 255 255 / 0.045) 0%,
+      rgb(255 255 255 / 0.012) 45%,
+      transparent 100%
+    );
+  }
+
+  /* Texto em degradê champagne — só para números e títulos de destaque */
+  .text-gold-gradient {
+    @apply from-gold-200 via-gold-400 to-gold-600 bg-gradient-to-br bg-clip-text text-transparent;
+  }
+
+  /*
+   * `capitalize` do CSS sobe a inicial de TODA palavra e produz
+   * "Terça-Feira, 14 De Julho". Aqui sobe só a primeira letra da frase.
+   */
+  .first-letter-caps::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
