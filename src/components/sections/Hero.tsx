@@ -5,6 +5,7 @@ import { ArrowRight, MapPin, Star } from 'lucide-react'
 import { site } from '@/content/site'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 import { useParallax } from '@/lib/useParallax'
+import { useRegisterBanner } from '@/lib/banner'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Section'
 
@@ -12,6 +13,8 @@ export function Hero() {
   const reduced = useReducedMotion()
   const ref = useRef<HTMLElement>(null)
   const y = useParallax(ref)
+
+  useRegisterBanner(ref)
 
   const rise = (delay: number) => ({
     initial: { opacity: 0, y: reduced ? 0 : 24 },
@@ -22,11 +25,10 @@ export function Hero() {
   return (
     /*
       Banner de sangria total: sobe por trás do menu, que fica claro enquanto está sobre ele.
-      O `id` é o que o Header observa para saber quando trocar a cor da navegação.
+      Quem avisa o Header disso é o `useRegisterBanner`, acima.
     */
     <section
       ref={ref}
-      id="hero"
       className="relative min-h-[36rem] overflow-hidden md:min-h-[42rem] lg:min-h-[46rem]"
     >
       {/* A moldura é maior que a seção: a foto pode deslizar sem descolar das bordas. */}

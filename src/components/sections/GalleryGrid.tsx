@@ -5,11 +5,13 @@ import type { CategoryId } from '@/content/types'
 import { cn } from '@/lib/cn'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 import { Photo } from '@/components/ui/Photo'
+import { Lightbox } from '@/components/ui/Lightbox'
 
 type Filter = CategoryId | 'todos'
 
 export function GalleryGrid({ limit }: { limit?: number }) {
   const [filter, setFilter] = useState<Filter>('todos')
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
   const reduced = useReducedMotion()
 
   const items = useMemo(() => {
@@ -22,6 +24,12 @@ export function GalleryGrid({ limit }: { limit?: number }) {
     { id: 'todos', label: 'Todos' },
     ...categories.map((category) => ({ id: category.id as Filter, label: category.label })),
   ]
+
+  /** Trocar de filtro com o visor aberto deixaria um índice apontando para outra foto. */
+  const selectFilter = (next: Filter) => {
+    setOpenIndex(null)
+    setFilter(next)
+  }
 
   return (
     <div>
@@ -36,7 +44,7 @@ export function GalleryGrid({ limit }: { limit?: number }) {
             type="button"
             role="tab"
             aria-selected={filter === item.id}
-            onClick={() => setFilter(item.id)}
+            onClick={() => selectFilter(item.id)}
             className={cn(
               'rounded-full px-4 py-2 text-xs font-medium transition-all duration-200',
               filter === item.id
@@ -56,7 +64,7 @@ export function GalleryGrid({ limit }: { limit?: number }) {
       ) : (
         <motion.ul layout className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
-            {items.map((item) => (
+            {items.map((item, index) => (
               <motion.li
                 key={item.id}
                 layout={!reduced}
@@ -66,17 +74,36 @@ export function GalleryGrid({ limit }: { limit?: number }) {
                 transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
                 className="group"
               >
-                <Photo
-                  src={item.src}
-                  alt={item.alt}
-                  zoom
-                  className="ring-cream-300 group-hover:ring-mocha-300 aspect-[3/4] w-full rounded-2xl ring-1 transition-all duration-500 group-hover:shadow-[0_24px_50px_-32px_rgba(26,21,18,0.45)]"
-                />
+                {/*
+                  O `layoutId` é o vínculo com o visor: é a MESMA foto que cresce até o centro
+                  da tela, não uma cópia que aparece por cima.
+                */}
+                <motion.button
+                  type="button"
+                  {...(reduced ? {} : { layoutId: `gallery-${item.id}` })}
+                  onClick={() => setOpenIndex(index)}
+                  aria-label={`Ampliar: ${item.alt}`}
+                  className="block w-full cursor-zoom-in"
+                >
+                  <Photo
+                    src={item.src}
+                    alt={item.alt}
+                    zoom
+                    className="ring-cream-300 group-hover:ring-mocha-300 aspect-[3/4] w-full rounded-2xl ring-1 transition-all duration-500 group-hover:shadow-[0_24px_50px_-32px_rgba(26,21,18,0.45)]"
+                  />
+                </motion.button>
               </motion.li>
             ))}
           </AnimatePresence>
         </motion.ul>
       )}
+
+      <Lightbox
+        items={items}
+        index={openIndex}
+        onClose={() => setOpenIndex(null)}
+        onNavigate={setOpenIndex}
+      />
     </div>
   )
 }

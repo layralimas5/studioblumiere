@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 import { Reveal } from './Reveal'
 
@@ -16,19 +16,25 @@ export function Container({
  * `tone` alterna a temperatura do fundo. O ritmo entre os cremes é o que impede
  * a página inteira de virar um bloco claro contínuo.
  *
- * `base` é a cor do corpo — não precisa de emenda. Os outros dois tons entram e saem
+ * `base` é a cor do corpo — não precisa de emenda. Todos os outros fundos entram e saem
  * em degradê (`section-blend`), então a troca de cor entre seções nunca é uma linha seca.
+ *
+ * `tint` aceita uma cor livre (ex.: `var(--color-tint-noivas)`) e tem precedência sobre o
+ * `tone` — é como cada categoria de serviço ganha o próprio fundo sem que o Section
+ * precise conhecer o catálogo.
  */
 export function Section({
   id,
   children,
   className,
   tone = 'base',
+  tint,
 }: {
   id?: string
   children: ReactNode
   className?: string
   tone?: 'base' | 'raised' | 'soft'
+  tint?: string
 }) {
   const tones = {
     base: 'bg-cream-100',
@@ -39,7 +45,12 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn('relative scroll-mt-24 py-24 md:py-32', tones[tone], className)}
+      className={cn(
+        'relative scroll-mt-24 py-24 md:py-32',
+        tint ? 'section-blend' : tones[tone],
+        className,
+      )}
+      {...(tint ? { style: { '--tone': tint } as CSSProperties } : {})}
     >
       {children}
     </section>

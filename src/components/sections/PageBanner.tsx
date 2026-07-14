@@ -3,12 +3,13 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/cn'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 import { useParallax } from '@/lib/useParallax'
+import { useRegisterBanner } from '@/lib/banner'
 import { Container } from '@/components/ui/Section'
 
 /**
  * Banner de sangria total para o topo de uma página interna — a mesma linguagem do
- * hero da home, em altura menor. O `id="hero"` é o que o Header observa para manter
- * a navegação clara enquanto ela repousa sobre a foto.
+ * hero da home, em altura menor. Ele se registra no Header (`useRegisterBanner`), que
+ * mantém a navegação clara enquanto ela repousa sobre a foto.
  */
 export function PageBanner({
   image,
@@ -33,6 +34,8 @@ export function PageBanner({
   const ref = useRef<HTMLElement>(null)
   const y = useParallax(ref)
 
+  useRegisterBanner(ref)
+
   const rise = (delay: number) => ({
     initial: { opacity: 0, y: reduced ? 0 : 24 },
     animate: { opacity: 1, y: 0 },
@@ -42,7 +45,6 @@ export function PageBanner({
   return (
     <section
       ref={ref}
-      id="hero"
       className="relative min-h-[28rem] overflow-hidden md:min-h-[34rem] lg:min-h-[38rem]"
     >
       {/* A moldura é maior que a seção: a foto pode deslizar sem descolar das bordas. */}
