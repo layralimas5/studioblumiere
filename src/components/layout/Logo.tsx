@@ -22,8 +22,9 @@ export function Logo({
       width={126}
       height={67}
       className={cn(
-        'h-11 w-auto transition-[filter] duration-300',
-        tone === 'light' ? 'brightness-125' : 'brightness-[0.55] saturate-150',
+        'h-14 w-auto transition-[filter] duration-300',
+        // `brightness-0` achata o dourado em preto; `invert` sobe esse preto para o branco.
+        tone === 'light' ? 'brightness-0 invert' : 'brightness-[0.55] saturate-150',
         className,
       )}
     />
