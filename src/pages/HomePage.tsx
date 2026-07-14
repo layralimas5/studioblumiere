@@ -15,7 +15,7 @@ import { Faq } from '@/components/sections/Faq'
 export function HomePage() {
   useDocumentMeta(
     'Studio B Lumière — Beleza para noivas e para o seu dia a dia',
-    'Salão de beleza completo: cabelo, maquiagem, cílios e unhas. Especialistas em noivas. Escolha o serviço, a profissional e o horário — e reserve em menos de um minuto.',
+    'Maquiagem, cílios, unhas e sobrancelhas em Vitória, ES. Especialistas em noivas. Escolha o serviço, a profissional e o horário, e reserve em menos de um minuto.',
   )
 
   return (

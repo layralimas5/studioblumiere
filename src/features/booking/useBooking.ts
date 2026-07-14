@@ -162,7 +162,8 @@ export function useBooking(initialServiceId?: string) {
     availableSlots,
     isDateAvailable,
     isComplete,
-    whatsappLink: message ? whatsappUrl(message) : '',
+    /** A reserva vai para a profissional escolhida; sem escolha, para o contato geral. */
+    whatsappLink: message ? whatsappUrl(message, professional?.whatsapp) : '',
     selectService,
     selectProfessional,
     selectDate,

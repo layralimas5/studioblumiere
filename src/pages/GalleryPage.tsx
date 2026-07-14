@@ -7,7 +7,7 @@ import { BookingSection } from '@/components/sections/BookingSection'
 export function GalleryPage() {
   useDocumentMeta(
     'Galeria — Studio B Lumière',
-    'Penteados, maquiagens, extensões de cílios, unhas e produções de noiva feitas no Studio B Lumière. Filtre por categoria e veja o nosso trabalho.',
+    'Maquiagens, extensões de cílios, unhas, sobrancelhas e produções de noiva feitas no Studio B Lumière. Filtre por categoria e veja o nosso trabalho.',
   )
 
   return (

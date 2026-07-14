@@ -13,7 +13,7 @@ import { BookingSection } from '@/components/sections/BookingSection'
 export function ServicesPage() {
   useDocumentMeta(
     'Serviços e preços — Studio B Lumière',
-    'Cabelo, maquiagem, cílios, unhas e sobrancelhas. Veja todos os serviços do Studio B Lumière, com duração e preço, e reserve com a profissional que você escolher.',
+    'Maquiagem, cílios, unhas e sobrancelhas. Veja todos os serviços do Studio B Lumière, com duração e preço, e reserve com a profissional que você escolher.',
   )
 
   return (
@@ -35,7 +35,7 @@ export function ServicesPage() {
                 <Script>sem letra miúda</Script>
               </>
             }
-            description="Preços a partir de — o valor final depende do comprimento do cabelo, do volume e do que combinarmos na avaliação. Nada de surpresa no caixa."
+            description="O valor final depende do que combinarmos na avaliação. Você sabe quanto vai pagar antes de começar: nada de surpresa no caixa."
           />
 
           {/* Índice: 6 categorias exigem um atalho, não um scroll longo */}
@@ -133,7 +133,7 @@ export function ServicesPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-60px' }}
-            className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4"
+            className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-6 md:grid-cols-3"
           >
             {professionals.map((pro) => (
               <motion.li key={pro.id} variants={staggerItem} className="group text-center">

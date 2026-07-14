@@ -6,7 +6,7 @@ const pillars = [
   {
     icon: UserRoundCheck,
     title: 'Você escolhe a profissional',
-    text: 'Nada de roleta: reserve com quem já conhece o seu cabelo.',
+    text: 'Nada de roleta: reserve direto com quem já conhece o seu traço.',
   },
   {
     icon: CalendarCheck,

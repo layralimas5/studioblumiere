@@ -6,7 +6,7 @@ import { Container, Eyebrow, Script, Section } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 
 const promises = [
-  'Teste de cabelo e maquiagem antes do dia',
+  'Teste de maquiagem antes do dia',
   'Cronograma escrito, com horário de cada etapa',
   'Equipe dedicada para madrinhas e mãe da noiva',
   'Atendimento onde você estiver: casa, hotel ou espaço',
@@ -26,7 +26,7 @@ export function BridalTeaser() {
             <div className="grid grid-cols-2 gap-5">
               <Photo
                 src="/images/bridal/noiva-1.jpg"
-                alt="Noiva com penteado finalizado"
+                alt="Noiva com a maquiagem finalizada"
                 className="aspect-[3/4] rounded-2xl shadow-[0_30px_60px_-35px_rgba(26,21,18,0.5)]"
               />
               <Photo

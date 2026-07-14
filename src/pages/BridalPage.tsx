@@ -22,7 +22,7 @@ const journey = [
   {
     step: 'Teste',
     when: '30 a 60 dias antes',
-    text: 'Cabelo e maquiagem completos, fotografados sob luz natural e sob flash. Ajustamos até você dizer "é esse".',
+    text: 'Maquiagem completa, fotografada sob luz natural e sob flash. Ajustamos até você dizer "é essa".',
   },
   {
     step: 'Cronograma',
@@ -41,7 +41,7 @@ const BRIDAL_MESSAGE = `Olá! Vou casar e gostaria de um orçamento para o pacot
 export function BridalPage() {
   useDocumentMeta(
     'Noivas — Studio B Lumière',
-    'Cabelo e maquiagem de noiva com teste prévio, cronograma escrito e equipe dedicada no dia do casamento. Atendemos também madrinhas e mãe da noiva.',
+    'Maquiagem de noiva com teste prévio, cronograma escrito e equipe dedicada no dia do casamento. Atendemos também madrinhas e mãe da noiva.',
   )
 
   const bridalServices = services.filter((service) => service.category === 'noivas')
@@ -94,7 +94,7 @@ export function BridalPage() {
               <div className="relative">
                 <Photo
                   src="/images/bridal/hero.jpg"
-                  alt="Noiva pronta, com penteado e maquiagem finalizados"
+                  alt="Noiva pronta, com a maquiagem finalizada"
                   loading="eager"
                   className="aspect-[4/5] rounded-[2.5rem] shadow-[0_50px_100px_-50px_rgba(26,21,18,0.5)]"
                 />

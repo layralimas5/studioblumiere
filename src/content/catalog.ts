@@ -13,13 +13,17 @@ export const categories: Category[] = [
     label: 'Noivas',
     tagline: 'Do teste ao altar, com hora marcada e nenhum imprevisto.',
   },
-  { id: 'cabelo', label: 'Cabelo', tagline: 'Corte, cor e tratamento com leitura de fio.' },
   { id: 'maquiagem', label: 'Maquiagem', tagline: 'Pele viva, longa duração, nada de máscara.' },
   { id: 'cilios', label: 'Cílios', tagline: 'Do natural ao volume, respeitando o fio nativo.' },
   { id: 'unhas', label: 'Unhas', tagline: 'Acabamento impecável que dura semanas.' },
   { id: 'sobrancelhas', label: 'Sobrancelhas', tagline: 'Design que segue o seu olhar, não a moda.' },
 ]
 
+/**
+ * TODO(cliente): conferir nome, duração e preço de cada serviço com as profissionais.
+ * `priceFrom: null` mostra "Sob consulta" — é o padrão até os preços reais chegarem.
+ * Preço inventado no ar é propaganda enganosa; deixe null enquanto houver dúvida.
+ */
 export const services: Service[] = [
   // Noivas
   {
@@ -27,7 +31,7 @@ export const services: Service[] = [
     category: 'noivas',
     name: 'Pacote Noiva Completo',
     description:
-      'Teste prévio de cabelo e maquiagem, dia do casamento com equipe dedicada e retoque final antes da cerimônia.',
+      'Teste prévio de maquiagem, dia do casamento com equipe dedicada e retoque final antes da cerimônia.',
     durationMin: 240,
     priceFrom: null,
     featured: true,
@@ -37,61 +41,17 @@ export const services: Service[] = [
     category: 'noivas',
     name: 'Teste de Noiva',
     description:
-      'Ensaio de penteado e maquiagem para definir cada detalhe com calma, antes do grande dia.',
+      'Ensaio da maquiagem para definir cada detalhe com calma, antes do grande dia.',
     durationMin: 120,
-    priceFrom: 450,
+    priceFrom: null,
   },
   {
     id: 'noiva-madrinhas',
     category: 'noivas',
     name: 'Madrinhas e Mãe da Noiva',
-    description: 'Penteado e maquiagem para o cortejo, no mesmo dia e no mesmo ritmo da noiva.',
+    description: 'Maquiagem para o cortejo, no mesmo dia e no mesmo ritmo da noiva.',
     durationMin: 90,
-    priceFrom: 320,
-  },
-  {
-    id: 'noiva-day',
-    category: 'noivas',
-    name: 'Day of the Bride',
-    description:
-      'O salão reservado para você e suas convidadas: espumante, música e todos os serviços em sequência.',
-    durationMin: 300,
     priceFrom: null,
-  },
-
-  // Cabelo
-  {
-    id: 'cabelo-corte',
-    category: 'cabelo',
-    name: 'Corte + Finalização',
-    description: 'Consulta de visagismo, corte sob medida e finalização que você consegue repetir em casa.',
-    durationMin: 90,
-    priceFrom: 180,
-    featured: true,
-  },
-  {
-    id: 'cabelo-cor',
-    category: 'cabelo',
-    name: 'Coloração & Mechas',
-    description: 'Loiros, morenas iluminadas e cobertura de brancos com diagnóstico de fio antes de qualquer química.',
-    durationMin: 180,
-    priceFrom: 420,
-  },
-  {
-    id: 'cabelo-tratamento',
-    category: 'cabelo',
-    name: 'Tratamento de Reconstrução',
-    description: 'Protocolo de reposição de massa e brilho para cabelos cansados de química ou calor.',
-    durationMin: 60,
-    priceFrom: 220,
-  },
-  {
-    id: 'cabelo-penteado',
-    category: 'cabelo',
-    name: 'Penteado para Evento',
-    description: 'Preso, semipreso ou ondas soltas — construído para durar a festa inteira.',
-    durationMin: 75,
-    priceFrom: 260,
   },
 
   // Maquiagem
@@ -101,7 +61,7 @@ export const services: Service[] = [
     name: 'Maquiagem Social',
     description: 'Para formatura, casamento de amiga ou jantar. Pele natural, olhar marcado.',
     durationMin: 60,
-    priceFrom: 240,
+    priceFrom: null,
     featured: true,
   },
   {
@@ -110,7 +70,7 @@ export const services: Service[] = [
     name: 'Make Express',
     description: 'Trinta minutos entre o trabalho e o compromisso, sem abrir mão do acabamento.',
     durationMin: 30,
-    priceFrom: 140,
+    priceFrom: null,
   },
   {
     id: 'make-aula',
@@ -118,7 +78,7 @@ export const services: Service[] = [
     name: 'Aula de Automaquiagem',
     description: 'Você aprende a fazer a sua própria make, com os produtos que já tem em casa.',
     durationMin: 120,
-    priceFrom: 380,
+    priceFrom: null,
   },
 
   // Cílios
@@ -128,7 +88,7 @@ export const services: Service[] = [
     name: 'Extensão Clássica',
     description: 'Um fio para cada cílio natural. O efeito de quem nasceu com cílios bonitos.',
     durationMin: 90,
-    priceFrom: 190,
+    priceFrom: null,
     featured: true,
   },
   {
@@ -137,7 +97,7 @@ export const services: Service[] = [
     name: 'Volume Brasileiro',
     description: 'Leques leves que preenchem as falhas e dão densidade sem pesar na pálpebra.',
     durationMin: 120,
-    priceFrom: 260,
+    priceFrom: null,
   },
   {
     id: 'cilios-lifting',
@@ -145,7 +105,7 @@ export const services: Service[] = [
     name: 'Lash Lifting + Tintura',
     description: 'Curvatura e cor no seu próprio cílio, sem colar um fio sequer. Dura até 8 semanas.',
     durationMin: 60,
-    priceFrom: 180,
+    priceFrom: null,
   },
   {
     id: 'cilios-manutencao',
@@ -153,7 +113,7 @@ export const services: Service[] = [
     name: 'Manutenção de Extensão',
     description: 'Reposição dos fios que caíram no ciclo natural. Ideal a cada 3 semanas.',
     durationMin: 60,
-    priceFrom: 120,
+    priceFrom: null,
   },
 
   // Unhas
@@ -163,7 +123,7 @@ export const services: Service[] = [
     name: 'Alongamento em Gel',
     description: 'Estrutura resistente, formato desenhado com você e acabamento espelhado.',
     durationMin: 150,
-    priceFrom: 220,
+    priceFrom: null,
     featured: true,
   },
   {
@@ -172,7 +132,7 @@ export const services: Service[] = [
     name: 'Esmaltação em Gel',
     description: 'Cor uniforme e brilho que atravessa três semanas de rotina.',
     durationMin: 75,
-    priceFrom: 110,
+    priceFrom: null,
   },
   {
     id: 'unhas-spa',
@@ -180,7 +140,7 @@ export const services: Service[] = [
     name: 'Spa de Mãos e Pés',
     description: 'Esfoliação, hidratação profunda e massagem — mais cuidado do que estética.',
     durationMin: 90,
-    priceFrom: 160,
+    priceFrom: null,
   },
 
   // Sobrancelhas
@@ -190,97 +150,60 @@ export const services: Service[] = [
     name: 'Design com Henna',
     description: 'Mapeamento do rosto, correção do desenho e preenchimento das falhas.',
     durationMin: 45,
-    priceFrom: 90,
+    priceFrom: null,
     featured: true,
   },
   {
     id: 'brow-laminacao',
     category: 'sobrancelhas',
     name: 'Laminação de Sobrancelhas',
-    description: 'Fios alinhados para cima, efeito volumoso e penteado por semanas.',
+    description: 'Fios alinhados para cima, efeito volumoso e desenhado por semanas.',
     durationMin: 60,
-    priceFrom: 150,
+    priceFrom: null,
   },
 ]
 
 /**
- * TODO(cliente): trocar por nomes e fotos reais da equipe.
- * `worksOn` controla quais dias o calendário libera para cada profissional.
+ * Cada profissional recebe os agendamentos no próprio WhatsApp.
+ *
+ * TODO(cliente): confirmar `worksOn` — hoje está terça a sábado para todas, seguindo o
+ * horário do salão. `worksOn` controla quais dias o calendário libera para cada uma
+ * (0 = domingo … 6 = sábado). Confirmar também o sobrenome de cada uma.
  */
 export const professionals: Professional[] = [
   {
-    id: 'ana',
-    name: 'Ana Beatriz',
-    role: 'Hair stylist sênior · Especialista em noivas',
-    specialties: ['noivas', 'cabelo'],
-    photo: '/images/team/ana.jpg',
+    id: 'beatriz',
+    name: 'Beatriz',
+    role: 'Maquiadora · Especialista em noivas',
+    specialties: ['maquiagem', 'noivas'],
+    photo: '/images/team/beatriz.jpg',
     worksOn: [2, 3, 4, 5, 6],
+    whatsapp: '5527996020014',
   },
   {
-    id: 'carol',
-    name: 'Carolina Reis',
-    role: 'Maquiadora · Beauty artist',
-    specialties: ['noivas', 'maquiagem'],
-    photo: '/images/team/carol.jpg',
-    worksOn: [3, 4, 5, 6],
-  },
-  {
-    id: 'juliana',
-    name: 'Juliana Mota',
-    role: 'Colorista',
-    specialties: ['cabelo'],
-    photo: '/images/team/juliana.jpg',
-    worksOn: [2, 3, 4, 5],
-  },
-  {
-    id: 'marina',
-    name: 'Marina Alves',
-    role: 'Lash designer',
-    specialties: ['cilios', 'sobrancelhas'],
-    photo: '/images/team/marina.jpg',
-    worksOn: [2, 3, 4, 5, 6],
-  },
-  {
-    id: 'patricia',
-    name: 'Patrícia Lopes',
+    id: 'bruna',
+    name: 'Bruna',
     role: 'Lash designer · Brow expert',
     specialties: ['cilios', 'sobrancelhas'],
-    photo: '/images/team/patricia.jpg',
-    worksOn: [3, 4, 5, 6],
+    photo: '/images/team/bruna.jpg',
+    worksOn: [2, 3, 4, 5, 6],
+    whatsapp: '5527992970437',
   },
   {
-    id: 'renata',
-    name: 'Renata Souza',
+    id: 'marcia',
+    name: 'Marcia',
     role: 'Nail designer',
     specialties: ['unhas'],
-    photo: '/images/team/renata.jpg',
+    photo: '/images/team/marcia.jpg',
     worksOn: [2, 3, 4, 5, 6],
-  },
-  {
-    id: 'tais',
-    name: 'Taís Ferreira',
-    role: 'Nail designer · Spa',
-    specialties: ['unhas'],
-    photo: '/images/team/tais.jpg',
-    worksOn: [2, 4, 5, 6],
-  },
-  {
-    id: 'vitoria',
-    name: 'Vitória Nunes',
-    role: 'Maquiadora',
-    specialties: ['maquiagem', 'noivas'],
-    photo: '/images/team/vitoria.jpg',
-    worksOn: [2, 3, 5, 6],
+    whatsapp: '5527999367381',
   },
 ]
 
 export const gallery: GalleryItem[] = [
-  { id: 'g1', category: 'noivas', src: '/images/gallery/noivas-1.jpg', alt: 'Noiva com penteado semipreso e véu' },
+  { id: 'g1', category: 'noivas', src: '/images/gallery/noivas-1.jpg', alt: 'Noiva com maquiagem finalizada e véu' },
   { id: 'g2', category: 'noivas', src: '/images/gallery/noivas-2.jpg', alt: 'Maquiagem de noiva em pele madura' },
-  { id: 'g3', category: 'noivas', src: '/images/gallery/noivas-3.jpg', alt: 'Coque baixo trançado para noiva' },
-  { id: 'g4', category: 'cabelo', src: '/images/gallery/cabelo-1.jpg', alt: 'Loiro iluminado com mechas finas' },
-  { id: 'g5', category: 'cabelo', src: '/images/gallery/cabelo-2.jpg', alt: 'Corte bob com franja cortina' },
-  { id: 'g6', category: 'cabelo', src: '/images/gallery/cabelo-3.jpg', alt: 'Ondas longas com brilho de tratamento' },
+  { id: 'g3', category: 'noivas', src: '/images/gallery/noivas-3.jpg', alt: 'Detalhe do contorno de lábios de noiva' },
   { id: 'g7', category: 'maquiagem', src: '/images/gallery/make-1.jpg', alt: 'Maquiagem social com olhar esfumado' },
   { id: 'g8', category: 'maquiagem', src: '/images/gallery/make-2.jpg', alt: 'Pele natural com boca nude' },
   { id: 'g9', category: 'cilios', src: '/images/gallery/cilios-1.jpg', alt: 'Extensão de cílios efeito clássico' },
@@ -291,27 +214,28 @@ export const gallery: GalleryItem[] = [
   { id: 'g14', category: 'sobrancelhas', src: '/images/gallery/brow-1.jpg', alt: 'Sobrancelha com design e henna' },
 ]
 
+/** TODO(cliente): trocar pelos depoimentos reais, com autorização das clientes. */
 export const testimonials: Testimonial[] = [
   {
     id: 't1',
-    name: 'Marcela A.',
+    name: 'Marcela A.', // [PLACEHOLDER]
     context: 'Noiva · Casamento em março',
     quote:
       'Fiz o teste dois meses antes e chegamos no dia sem nenhuma surpresa. A equipe entrou na suíte no horário combinado e saiu no horário combinado — isso, num dia de casamento, vale ouro.',
   },
   {
     id: 't2',
-    name: 'Bruna L.',
+    name: 'Bruna L.', // [PLACEHOLDER]
     context: 'Cliente de cílios há 2 anos',
     quote:
       'Já tinha desistido de extensão porque meus cílios naturais sempre sofriam. Aqui foi a primeira vez que alguém olhou o meu fio antes de escolher o efeito.',
   },
   {
     id: 't3',
-    name: 'Camila R.',
-    context: 'Coloração',
+    name: 'Camila R.', // [PLACEHOLDER]
+    context: 'Alongamento em gel',
     quote:
-      'Cheguei com um loiro alaranjado de outro salão e saí com a cor que eu queria há anos. Explicaram cada etapa antes de encostar no meu cabelo.',
+      'Nunca tinha conseguido passar de duas semanas sem quebrar. Já vou na terceira manutenção e as unhas continuam impecáveis.',
   },
 ]
 
@@ -320,13 +244,13 @@ export const faq: FaqItem[] = [
     id: 'f1',
     question: 'Como funciona o agendamento pelo site?',
     answer:
-      'Você escolhe o serviço, a profissional e o melhor horário aqui mesmo. Ao finalizar, abrimos uma conversa no WhatsApp com tudo já preenchido — é só enviar. Confirmamos a reserva em poucos minutos, dentro do horário de atendimento.',
+      'Você escolhe o serviço, a profissional e o melhor horário aqui mesmo. Ao finalizar, abrimos uma conversa no WhatsApp da própria profissional, com tudo já preenchido — é só enviar. Ela confirma a reserva em poucos minutos, dentro do horário de atendimento.',
   },
   {
     id: 'f2',
     question: 'Posso escolher a profissional que vai me atender?',
     answer:
-      'Sim, e recomendamos. Cada profissional tem uma especialidade, e o agendador só mostra quem atende o serviço que você selecionou. Se não tiver preferência, escolha "Sem preferência" e encaixamos você com quem estiver disponível.',
+      'Sim, e recomendamos. Cada profissional tem a sua especialidade, e o agendador só mostra quem atende o serviço que você selecionou. Se não tiver preferência, escolha "Sem preferência" e nós encaixamos você com quem estiver disponível.',
   },
   {
     id: 'f3',

@@ -58,8 +58,8 @@ export function ServicesTeaser() {
               </h2>
 
               <p className="text-ink-500 mt-6 max-w-sm text-pretty leading-relaxed">
-                Cabelo, maquiagem, cílios, unhas e sobrancelhas — sem percorrer a cidade entre um
-                compromisso e outro.
+                Maquiagem, cílios, unhas e sobrancelhas, sem percorrer a cidade entre um compromisso
+                e outro.
               </p>
 
               <Button as={Link} to="/servicos" variant="secondary" size="lg" className="mt-9">
