@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# O roteamento é do lado do cliente: sem isso, abrir /servicos direto (ou dar F5 nela)
+# devolveria 404, porque o arquivo não existe no servidor.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Os assets levam hash no nome — mudou o conteúdo, mudou a URL. Podem ser cacheados para sempre.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

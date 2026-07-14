@@ -16,13 +16,3 @@ export function formatDuration(minutes: number): string {
   if (rest === 0) return `${hours}h`
   return `${hours}h${String(rest).padStart(2, '0')}`
 }
-
-const longDate = new Intl.DateTimeFormat('pt-BR', {
-  weekday: 'long',
-  day: '2-digit',
-  month: 'long',
-})
-
-export function formatLongDate(date: Date): string {
-  return longDate.format(date)
-}

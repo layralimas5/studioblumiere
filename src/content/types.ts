@@ -1,4 +1,4 @@
-export type CategoryId = 'noivas' | 'cabelo' | 'maquiagem' | 'cilios' | 'unhas' | 'sobrancelhas'
+export type CategoryId = 'noivas' | 'maquiagem' | 'cilios' | 'unhas' | 'sobrancelhas'
 
 export interface Category {
   id: CategoryId
@@ -20,9 +20,6 @@ export interface Service {
   featured?: boolean
 }
 
-/** Dias da semana no padrão de `Date.getDay()`: 0 = domingo. */
-export type Weekday = 0 | 1 | 2 | 3 | 4 | 5 | 6
-
 export interface Professional {
   id: string
   name: string
@@ -30,8 +27,11 @@ export interface Professional {
   /** Categorias que ela atende — usado para filtrar quem aparece no agendador. */
   specialties: CategoryId[]
   photo: string
-  /** Dias em que atende. Uma data fora disso é bloqueada no calendário. */
-  worksOn: Weekday[]
+  /**
+   * WhatsApp próprio: cada profissional recebe os agendamentos dela.
+   * Somente dígitos, com código do país.
+   */
+  whatsapp: string
 }
 
 export interface GalleryItem {

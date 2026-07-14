@@ -40,8 +40,8 @@ export function GalleryGrid({ limit }: { limit?: number }) {
             className={cn(
               'rounded-full px-4 py-2 text-xs font-medium transition-all duration-200',
               filter === item.id
-                ? 'from-gold-300 to-gold-500 text-night-950 bg-gradient-to-b'
-                : 'border-night-700 text-ivory-400 hover:border-gold-500/50 hover:text-ivory-50 border',
+                ? 'bg-mocha-500 text-cream-50'
+                : 'border-cream-300 text-ink-500 hover:border-mocha-400 hover:text-ink-900 border bg-white',
             )}
           >
             {item.label}
@@ -50,7 +50,7 @@ export function GalleryGrid({ limit }: { limit?: number }) {
       </div>
 
       {items.length === 0 ? (
-        <p className="text-ivory-400 mt-16 text-center text-sm">
+        <p className="text-ink-500 mt-16 text-center text-sm">
           Ainda não temos fotos publicadas nesta categoria.
         </p>
       ) : (
@@ -69,8 +69,8 @@ export function GalleryGrid({ limit }: { limit?: number }) {
                 <Photo
                   src={item.src}
                   alt={item.alt}
-                  className="ring-night-700/60 group-hover:ring-gold-500/40 aspect-[3/4] w-full rounded-xl ring-1 transition-all duration-500"
-                  imgClassName="transition-transform duration-700 group-hover:scale-105"
+                  zoom
+                  className="ring-cream-300 group-hover:ring-mocha-300 aspect-[3/4] w-full rounded-2xl ring-1 transition-all duration-500 group-hover:shadow-[0_24px_50px_-32px_rgba(26,21,18,0.45)]"
                 />
               </motion.li>
             ))}

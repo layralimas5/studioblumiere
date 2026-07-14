@@ -13,8 +13,11 @@ export function Container({
 }
 
 /**
- * `tone` alterna a profundidade do fundo. O ritmo entre 950 e 900 é o que impede
- * a página inteira de virar um bloco escuro contínuo.
+ * `tone` alterna a temperatura do fundo. O ritmo entre os cremes é o que impede
+ * a página inteira de virar um bloco claro contínuo.
+ *
+ * `base` é a cor do corpo — não precisa de emenda. Os outros dois tons entram e saem
+ * em degradê (`section-blend`), então a troca de cor entre seções nunca é uma linha seca.
  */
 export function Section({
   id,
@@ -25,11 +28,12 @@ export function Section({
   id?: string
   children: ReactNode
   className?: string
-  tone?: 'base' | 'raised'
+  tone?: 'base' | 'raised' | 'soft'
 }) {
   const tones = {
-    base: 'bg-night-950',
-    raised: 'bg-night-900',
+    base: 'bg-cream-100',
+    raised: 'section-blend [--tone:var(--color-cream-200)]',
+    soft: 'section-blend [--tone:var(--color-cream-50)]',
   } as const
 
   return (
@@ -45,12 +49,17 @@ export function Section({
 /** Rótulo pequeno em versalete, entre dois filetes — a assinatura editorial da marca. */
 export function Eyebrow({ children }: { children: string }) {
   return (
-    <p className="text-gold-400 flex items-center gap-3 text-[0.6875rem] font-medium uppercase tracking-[0.28em]">
-      <span aria-hidden className="from-gold-500/0 to-gold-500/70 h-px w-8 bg-gradient-to-r" />
+    <p className="text-mocha-500 flex items-center gap-3 text-[0.6875rem] font-medium uppercase tracking-[0.28em]">
+      <span aria-hidden className="from-mocha-400/0 to-mocha-400/70 h-px w-8 bg-gradient-to-r" />
       {children}
-      <span aria-hidden className="from-gold-500/70 to-gold-500/0 h-px w-8 bg-gradient-to-r" />
+      <span aria-hidden className="from-mocha-400/70 to-mocha-400/0 h-px w-8 bg-gradient-to-r" />
     </p>
   )
+}
+
+/** Palavra em script café — o toque manuscrito que assina cada título. */
+export function Script({ children }: { children: ReactNode }) {
+  return <span className="font-script text-mocha-500 pr-1 text-[1.15em] font-normal">{children}</span>
 }
 
 export function SectionHeading({
@@ -75,12 +84,12 @@ export function SectionHeading({
         </div>
       ) : null}
 
-      <Title className="font-display text-ivory-50 mt-6 text-balance text-4xl font-light leading-[1.08] md:text-6xl">
+      <Title className="font-display text-ink-900 mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl">
         {title}
       </Title>
 
       {description ? (
-        <p className="text-ivory-400 mt-6 text-pretty text-base leading-relaxed md:text-lg">
+        <p className="text-ink-500 mt-6 text-pretty text-base leading-relaxed md:text-lg">
           {description}
         </p>
       ) : null}
@@ -88,7 +97,7 @@ export function SectionHeading({
   )
 }
 
-/** Card padrão: borda viva, superfície em degradê e brilho no hover. */
+/** Card padrão: superfície branca sobre o creme, borda discreta e elevação no hover. */
 export function Card({
   children,
   className,
@@ -101,9 +110,9 @@ export function Card({
   return (
     <div
       className={cn(
-        'surface border-night-700/70 relative rounded-2xl border',
+        'border-cream-300 relative rounded-2xl border bg-white',
         interactive &&
-          'hover:border-gold-500/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-24px_rgba(201,169,97,0.35)]',
+          'hover:border-mocha-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-30px_rgba(26,21,18,0.35)]',
         className,
       )}
     >
